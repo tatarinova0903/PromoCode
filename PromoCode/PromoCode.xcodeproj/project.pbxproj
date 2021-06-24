@@ -99,8 +99,8 @@
 		432CEF0F2684A39600402C32 /* PromoCode */ = {
 			isa = PBXGroup;
 			children = (
-				43F6378E2684C20B008D8363 /* CustomTabBar */,
 				43F637892684C0B9008D8363 /* Entities */,
+				43F6378E2684C20B008D8363 /* CustomTabBar */,
 				4396A17B2684AE5F005623CF /* Favorites */,
 				4396A17A2684AE59005623CF /* Main */,
 				432CEF102684A39600402C32 /* AppDelegate.swift */,

@@ -25,6 +25,13 @@ extension FavoritesPresenter: FavoritesModuleInput {
 }
 
 extension FavoritesPresenter: FavoritesViewOutput {
+    func getPromoCode(forIndex index: Int) -> PromoCode {
+        interactor.getPromoCode(forIndex: index)
+    }
+    
+    func getDataCount() -> Int {
+        interactor.getDataCount()
+    }
 }
 
 extension FavoritesPresenter: FavoritesInteractorOutput {

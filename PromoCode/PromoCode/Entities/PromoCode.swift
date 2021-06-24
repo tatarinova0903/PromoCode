@@ -7,7 +7,15 @@
 
 import Foundation
 
+enum Spheres: String {
+    case films = "Кино"
+    case food = "Еда"
+    case games = "Игры"
+    case others = "Другое"
+}
+
 struct PromoCode {
+    var sphere: Spheres = .others
     var service: String = ""
     var promocode: String = ""
     var description: String = ""

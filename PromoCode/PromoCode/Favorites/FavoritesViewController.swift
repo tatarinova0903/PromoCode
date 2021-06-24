@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import PinLayout
 
 final class FavoritesViewController: UIViewController {
 	private let output: FavoritesViewOutput
+    
+    private let tableView = UITableView()
 
     init(output: FavoritesViewOutput) {
         self.output = output
@@ -24,8 +27,39 @@ final class FavoritesViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        view.backgroundColor = .systemTeal
+        view.addSubview(tableView)
+        configureTableView()
 	}
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.pin
+            .all()
+    }
+    
+    private func configureTableView() {
+        tableView.backgroundColor = .white
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+}
+
+extension FavoritesViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let res = output.getDataCount()
+        return res
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        let promoCode = output.getPromoCode(forIndex: indexPath.row)
+        cell.textLabel?.text = promoCode.service
+        return cell
+    }
+}
+
+extension FavoritesViewController: UITableViewDelegate {
+    
 }
 
 extension FavoritesViewController: FavoritesViewInput {

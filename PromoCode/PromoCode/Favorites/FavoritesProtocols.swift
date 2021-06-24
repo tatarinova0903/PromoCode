@@ -19,9 +19,13 @@ protocol FavoritesViewInput: class {
 }
 
 protocol FavoritesViewOutput: class {
+    func getDataCount() -> Int
+    func getPromoCode(forIndex index: Int) -> PromoCode
 }
 
 protocol FavoritesInteractorInput: class {
+    func getDataCount() -> Int
+    func getPromoCode(forIndex index: Int) -> PromoCode
 }
 
 protocol FavoritesInteractorOutput: class {
