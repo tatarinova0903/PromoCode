@@ -17,6 +17,10 @@
 		432D91052685C0150079279E /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91042685C0150079279E /* CustomError.swift */; };
 		432D910A2685C1F60079279E /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91092685C1F60079279E /* Converter.swift */; };
 		432D910E2685C30B0079279E /* FireBaseKays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D910D2685C30B0079279E /* FireBaseKays.swift */; };
+		432D911E2685D5590079279E /* FavPromoCode+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D911C2685D5590079279E /* FavPromoCode+CoreDataClass.swift */; };
+		432D911F2685D5590079279E /* FavPromoCode+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D911D2685D5590079279E /* FavPromoCode+CoreDataProperties.swift */; };
+		432D91222685D6B70079279E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91212685D6B70079279E /* CoreDataManager.swift */; };
+		432D91262685E0120079279E /* PromoCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91252685E0120079279E /* PromoCodeTableViewCell.swift */; };
 		4396A1822684AEBB005623CF /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A17C2684AEBB005623CF /* FavoritesPresenter.swift */; };
 		4396A1832684AEBB005623CF /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A17D2684AEBB005623CF /* FavoritesRouter.swift */; };
 		4396A1842684AEBB005623CF /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A17E2684AEBB005623CF /* FavoritesViewController.swift */; };
@@ -54,6 +58,10 @@
 		432D91042685C0150079279E /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		432D91092685C1F60079279E /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		432D910D2685C30B0079279E /* FireBaseKays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseKays.swift; sourceTree = "<group>"; };
+		432D911C2685D5590079279E /* FavPromoCode+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavPromoCode+CoreDataClass.swift"; sourceTree = "<group>"; };
+		432D911D2685D5590079279E /* FavPromoCode+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavPromoCode+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		432D91212685D6B70079279E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		432D91252685E0120079279E /* PromoCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoCodeTableViewCell.swift; sourceTree = "<group>"; };
 		4396A17C2684AEBB005623CF /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		4396A17D2684AEBB005623CF /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		4396A17E2684AEBB005623CF /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +117,7 @@
 		432CEF0F2684A39600402C32 /* PromoCode */ = {
 			isa = PBXGroup;
 			children = (
+				432D91242685DF8D0079279E /* Views */,
 				432D91082685C1E70079279E /* Services */,
 				432D91032685C0070079279E /* Helpers */,
 				432D90FE2685BF0D0079279E /* Managers */,
@@ -131,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				432D90FF2685BF1F0079279E /* NetworkManager.swift */,
+				432D91212685D6B70079279E /* CoreDataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -150,6 +160,14 @@
 				432D91092685C1F60079279E /* Converter.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		432D91242685DF8D0079279E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				432D91252685E0120079279E /* PromoCodeTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		4396A17A2684AE59005623CF /* Main */ = {
@@ -181,6 +199,8 @@
 		43F637892684C0B9008D8363 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				432D911C2685D5590079279E /* FavPromoCode+CoreDataClass.swift */,
+				432D911D2685D5590079279E /* FavPromoCode+CoreDataProperties.swift */,
 				43F6378A2684C0CE008D8363 /* PromoCode.swift */,
 			);
 			path = Entities;
@@ -342,6 +362,8 @@
 				4396A1872684AEBB005623CF /* FavoritesContainer.swift in Sources */,
 				4396A1822684AEBB005623CF /* FavoritesPresenter.swift in Sources */,
 				43F637972684C239008D8363 /* CustomTabBarViewController.swift in Sources */,
+				432D91262685E0120079279E /* PromoCodeTableViewCell.swift in Sources */,
+				432D911F2685D5590079279E /* FavPromoCode+CoreDataProperties.swift in Sources */,
 				4396A1842684AEBB005623CF /* FavoritesViewController.swift in Sources */,
 				4396A1952684AF71005623CF /* MainContainer.swift in Sources */,
 				43F637982684C239008D8363 /* CustomTabBarProtocols.swift in Sources */,
@@ -354,7 +376,9 @@
 				4396A1902684AF71005623CF /* MainPresenter.swift in Sources */,
 				43F6379A2684C239008D8363 /* CustomTabBarContainer.swift in Sources */,
 				43F637952684C239008D8363 /* CustomTabBarPresenter.swift in Sources */,
+				432D91222685D6B70079279E /* CoreDataManager.swift in Sources */,
 				432CEF1B2684A39600402C32 /* PromoCode.xcdatamodeld in Sources */,
+				432D911E2685D5590079279E /* FavPromoCode+CoreDataClass.swift in Sources */,
 				432CEF132684A39600402C32 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,6 +17,7 @@ protocol MainModuleOutput: class {
 
 protocol MainViewInput: class {
     func reloadData()
+    func addToFavoritesDidTapped(promocode: PromoCode)
 }
 
 protocol MainViewOutput: class {

@@ -16,16 +16,19 @@ protocol FavoritesModuleOutput: class {
 }
 
 protocol FavoritesViewInput: class {
+    func reloadData()
 }
 
 protocol FavoritesViewOutput: class {
+    func viewDidLoad()
     func getDataCount() -> Int
-    func getPromoCode(forIndex index: Int) -> PromoCode
+    func getPromoCode(forIndex index: Int) -> FavPromoCode
 }
 
 protocol FavoritesInteractorInput: class {
+    func getAllPromocodes() 
     func getDataCount() -> Int
-    func getPromoCode(forIndex index: Int) -> PromoCode
+    func getPromoCode(forIndex index: Int) -> FavPromoCode
 }
 
 protocol FavoritesInteractorOutput: class {

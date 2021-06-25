@@ -9,11 +9,16 @@
 import Foundation
 
 final class FavoritesPresenter {
+    
+    // MARK: - Properties
+
 	weak var view: FavoritesViewInput?
     weak var moduleOutput: FavoritesModuleOutput?
 
 	private let router: FavoritesRouterInput
 	private let interactor: FavoritesInteractorInput
+
+    // MARK: - Init
 
     init(router: FavoritesRouterInput, interactor: FavoritesInteractorInput) {
         self.router = router
@@ -21,11 +26,19 @@ final class FavoritesPresenter {
     }
 }
 
+// MARK: - Extensions
+
 extension FavoritesPresenter: FavoritesModuleInput {
 }
 
 extension FavoritesPresenter: FavoritesViewOutput {
-    func getPromoCode(forIndex index: Int) -> PromoCode {
+    
+    func viewDidLoad() {
+        interactor.getAllPromocodes()
+        view?.reloadData()
+    }
+    
+    func getPromoCode(forIndex index: Int) -> FavPromoCode {
         interactor.getPromoCode(forIndex: index)
     }
     

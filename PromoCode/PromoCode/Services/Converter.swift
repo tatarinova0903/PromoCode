@@ -12,10 +12,12 @@ final class PromocodesConverter {
 
     static func promocode(from dict: [String : Any]) -> PromoCode? {
         var res = PromoCode()
-        guard let service = dict[PromoCodeKey.service.rawValue] as? String,
+        guard let id = dict[PromoCodeKey.id.rawValue] as? String,
+              let service = dict[PromoCodeKey.service.rawValue] as? String,
               let promocode = dict[PromoCodeKey.promocode.rawValue] as? String else {
             return nil
         }
+        res.id = id
         res.service = service
         res.promocode = promocode
         if let description = dict[PromoCodeKey.description.rawValue] as? String {

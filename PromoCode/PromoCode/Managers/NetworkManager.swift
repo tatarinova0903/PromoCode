@@ -13,7 +13,7 @@ protocol NetworkManagerDescription {
 }
 
 
-class NetworkManager: NetworkManagerDescription {
+final class NetworkManager: NetworkManagerDescription {
     
     static let shared = NetworkManager()
     

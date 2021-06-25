@@ -15,6 +15,7 @@ enum Spheres: String {
 }
 
 struct PromoCode {
+    var id: String = ""
     var service: String = ""
     var promocode: String = ""
     var description: String = ""

@@ -8,6 +8,7 @@
 import Foundation
 
 enum PromoCodeKey: String {
+    case id
     case service
     case promocode
     case description
