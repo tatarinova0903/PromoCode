@@ -25,6 +25,10 @@ extension MainPresenter: MainModuleInput {
 }
 
 extension MainPresenter: MainViewOutput {
+    func viewDidLoad() {
+        interactor.viewDidLoad()
+    }
+    
     func getPromoCode(forIndex index: Int) -> PromoCode {
         interactor.getPromoCode(forIndex: index)
     }
@@ -35,4 +39,7 @@ extension MainPresenter: MainViewOutput {
 }
 
 extension MainPresenter: MainInteractorOutput {
+    func promocodesDidLoad() {
+        view?.reloadData()
+    }
 }

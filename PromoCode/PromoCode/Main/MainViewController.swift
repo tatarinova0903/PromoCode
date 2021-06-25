@@ -27,6 +27,7 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        output.viewDidLoad()
         view.addSubview(tableView)
         configureTableView()
     }
@@ -63,4 +64,8 @@ extension MainViewController: UITableViewDelegate {
 }
 
 extension MainViewController: MainViewInput {
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
 }

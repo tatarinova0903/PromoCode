@@ -8,10 +8,10 @@
 import Foundation
 
 enum Spheres: String {
-    case films = "Кино"
-    case food = "Еда"
-    case games = "Игры"
-    case others = "Другое"
+    case films
+    case food
+    case games
+    case others
 }
 
 struct PromoCode {

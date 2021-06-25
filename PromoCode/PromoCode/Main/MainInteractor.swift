@@ -11,13 +11,25 @@ import Foundation
 final class MainInteractor {
 	weak var output: MainInteractorOutput?
     
-    let data: [PromoCode] = [PromoCode(service: "Кинопоиск", promocode: "34RFGDTDT", description: "Описание",                          date: Date()),
-                             PromoCode(service: "Амедиатека", promocode: "GTD45DYR", description: "Описание", date: Date()),
-                             PromoCode(service: "Нетфликс", promocode: "76YFYTF34", description: "Описание", date: Date()),
-                             PromoCode(service: "БургерКинг", promocode: "YFRGY65GE", description: "Описание", date: Date())]
+    private let networkManager = NetworkManager.shared
+    
+    private var data = [PromoCode]()
 }
 
 extension MainInteractor: MainInteractorInput {
+    
+    func viewDidLoad() {
+        networkManager.getPromocodes(for: .films) { [weak self] (res) in
+            guard let self = self else { return }
+            switch res {
+            case .success(let promocodes):
+                self.data = promocodes
+                self.output?.promocodesDidLoad()
+            case .failure(let err):
+                print(err.rawValue)
+            }
+        }
+    }
     
     func getDataCount() -> Int {
         data.count

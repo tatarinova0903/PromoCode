@@ -13,6 +13,10 @@
 		432CEF1B2684A39600402C32 /* PromoCode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 432CEF192684A39600402C32 /* PromoCode.xcdatamodeld */; };
 		432CEF1D2684A39800402C32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 432CEF1C2684A39800402C32 /* Assets.xcassets */; };
 		432CEF202684A39800402C32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 432CEF1E2684A39800402C32 /* LaunchScreen.storyboard */; };
+		432D91002685BF1F0079279E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D90FF2685BF1F0079279E /* NetworkManager.swift */; };
+		432D91052685C0150079279E /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91042685C0150079279E /* CustomError.swift */; };
+		432D910A2685C1F60079279E /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91092685C1F60079279E /* Converter.swift */; };
+		432D910E2685C30B0079279E /* FireBaseKays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D910D2685C30B0079279E /* FireBaseKays.swift */; };
 		4396A1822684AEBB005623CF /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A17C2684AEBB005623CF /* FavoritesPresenter.swift */; };
 		4396A1832684AEBB005623CF /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A17D2684AEBB005623CF /* FavoritesRouter.swift */; };
 		4396A1842684AEBB005623CF /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A17E2684AEBB005623CF /* FavoritesViewController.swift */; };
@@ -46,6 +50,10 @@
 		432CEF1C2684A39800402C32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		432CEF1F2684A39800402C32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		432CEF212684A39800402C32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		432D90FF2685BF1F0079279E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		432D91042685C0150079279E /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		432D91092685C1F60079279E /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
+		432D910D2685C30B0079279E /* FireBaseKays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseKays.swift; sourceTree = "<group>"; };
 		4396A17C2684AEBB005623CF /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		4396A17D2684AEBB005623CF /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		4396A17E2684AEBB005623CF /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +109,9 @@
 		432CEF0F2684A39600402C32 /* PromoCode */ = {
 			isa = PBXGroup;
 			children = (
+				432D91082685C1E70079279E /* Services */,
+				432D91032685C0070079279E /* Helpers */,
+				432D90FE2685BF0D0079279E /* Managers */,
 				43F637892684C0B9008D8363 /* Entities */,
 				43F6378E2684C20B008D8363 /* CustomTabBar */,
 				4396A17B2684AE5F005623CF /* Favorites */,
@@ -114,6 +125,31 @@
 				432CEF192684A39600402C32 /* PromoCode.xcdatamodeld */,
 			);
 			path = PromoCode;
+			sourceTree = "<group>";
+		};
+		432D90FE2685BF0D0079279E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				432D90FF2685BF1F0079279E /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		432D91032685C0070079279E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				432D91042685C0150079279E /* CustomError.swift */,
+				432D910D2685C30B0079279E /* FireBaseKays.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		432D91082685C1E70079279E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				432D91092685C1F60079279E /* Converter.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		4396A17A2684AE59005623CF /* Main */ = {
@@ -294,9 +330,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				432D91002685BF1F0079279E /* NetworkManager.swift in Sources */,
 				4396A1832684AEBB005623CF /* FavoritesRouter.swift in Sources */,
+				432D910E2685C30B0079279E /* FireBaseKays.swift in Sources */,
 				4396A1922684AF71005623CF /* MainViewController.swift in Sources */,
 				43F6378B2684C0CE008D8363 /* PromoCode.swift in Sources */,
+				432D910A2685C1F60079279E /* Converter.swift in Sources */,
 				43F637992684C239008D8363 /* CustomTabBarInteractor.swift in Sources */,
 				43F637962684C239008D8363 /* CustomTabBarRouter.swift in Sources */,
 				4396A1932684AF71005623CF /* MainProtocols.swift in Sources */,
@@ -310,6 +349,7 @@
 				4396A1912684AF71005623CF /* MainRouter.swift in Sources */,
 				4396A1942684AF71005623CF /* MainInteractor.swift in Sources */,
 				4396A1852684AEBB005623CF /* FavoritesProtocols.swift in Sources */,
+				432D91052685C0150079279E /* CustomError.swift in Sources */,
 				432CEF112684A39600402C32 /* AppDelegate.swift in Sources */,
 				4396A1902684AF71005623CF /* MainPresenter.swift in Sources */,
 				43F6379A2684C239008D8363 /* CustomTabBarContainer.swift in Sources */,
