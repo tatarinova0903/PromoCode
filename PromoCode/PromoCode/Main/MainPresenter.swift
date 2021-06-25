@@ -25,6 +25,13 @@ extension MainPresenter: MainModuleInput {
 }
 
 extension MainPresenter: MainViewOutput {
+    func getPromoCode(forIndex index: Int) -> PromoCode {
+        interactor.getPromoCode(forIndex: index)
+    }
+    
+    func getDataCount() -> Int {
+        interactor.getDataCount()
+    }
 }
 
 extension MainPresenter: MainInteractorOutput {

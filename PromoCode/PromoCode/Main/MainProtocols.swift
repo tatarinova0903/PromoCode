@@ -19,9 +19,13 @@ protocol MainViewInput: class {
 }
 
 protocol MainViewOutput: class {
+    func getPromoCode(forIndex index: Int) -> PromoCode
+    func getDataCount() -> Int
 }
 
 protocol MainInteractorInput: class {
+    func getDataCount() -> Int
+    func getPromoCode(forIndex index: Int) -> PromoCode
 }
 
 protocol MainInteractorOutput: class {

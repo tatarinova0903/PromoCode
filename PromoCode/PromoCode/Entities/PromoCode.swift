@@ -15,7 +15,6 @@ enum Spheres: String {
 }
 
 struct PromoCode {
-    var sphere: Spheres = .others
     var service: String = ""
     var promocode: String = ""
     var description: String = ""

@@ -11,10 +11,10 @@ import Foundation
 final class FavoritesInteractor {
     weak var output: FavoritesInteractorOutput?
     
-    let data: [PromoCode] = [PromoCode(sphere: .films, service: "Кинопоиск", promocode: "34RFGDTDT", description: "Описание",                          date: Date()),
-                             PromoCode(sphere: .films,service: "Амедиатека", promocode: "GTD45DYR", description: "Описание", date: Date()),
-                             PromoCode(sphere: .films, service: "Нетфликс", promocode: "76YFYTF34", description: "Описание", date: Date()),
-                             PromoCode(sphere: .food, service: "БургерКинг", promocode: "YFRGY65GE", description: "Описание", date: Date())]
+    let data: [PromoCode] = [PromoCode(service: "Кинопоиск", promocode: "34RFD67T", description: "Описание", date: Date()),
+                             PromoCode(service: "Амедиатека", promocode: "GTD45DYR", description: "Описание", date: Date()),
+                             PromoCode(service: "Нетфликс", promocode: "76YFYTF34", description: "Описание", date: Date()),
+                             PromoCode(service: "БургерКинг", promocode: "YFRGY65GE", description: "Описание", date: Date())]
 }
 
 extension FavoritesInteractor: FavoritesInteractorInput {

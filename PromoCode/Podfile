@@ -7,5 +7,6 @@ target 'PromoCode' do
 
   # Pods for PromoCode
 	pod 'PinLayout'
-
+	pod 'Firebase/Firestore'
+	pod 'FirebaseFirestoreSwift'
 end
