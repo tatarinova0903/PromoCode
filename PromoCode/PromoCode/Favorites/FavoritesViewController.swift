@@ -8,6 +8,7 @@
 
 import UIKit
 import PinLayout
+import CoreData
 
 final class FavoritesViewController: UIViewController {
     
@@ -72,7 +73,7 @@ final class FavoritesViewController: UIViewController {
     
     @objc
     private func addButtonDidTaped() {
-        CoreDataManager.shared.addPromoCode()
+        CoreDataManager.shared.addPromoCode(promocode: PromoCode(id: "ID", service: "OKKO", promocode: "&^GHU", description: "", date: Date()))
         tableView.reloadData()
     }
 }
@@ -81,13 +82,12 @@ final class FavoritesViewController: UIViewController {
 
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let res = output.getDataCount()
-        return res
+        output.getNumberOfRowsInSection(section)
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        let promoCode = output.getPromoCode(forIndex: indexPath.row)
+        let promoCode = output.getPromoCode(forIndexPath: indexPath)
         cell.textLabel?.text = "\(promoCode.service) + \(promoCode.id)"
         return cell
     }
@@ -102,3 +102,42 @@ extension FavoritesViewController: FavoritesViewInput {
         tableView.reloadData()
     }
 }
+
+extension FavoritesViewController: NSFetchedResultsControllerDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return output.getNumberOfSections()
+    }
+
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+          
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let newIndexPath_ = newIndexPath {
+                tableView.insertRows(at: [newIndexPath_], with: .fade)
+            }
+        case .delete:
+            if let newIndexPath_ = newIndexPath {
+                tableView.deleteRows(at: [newIndexPath_], with: .fade)
+            }
+        case .update:
+            if let newIndexPath_ = newIndexPath {
+                tableView.reloadRows(at: [newIndexPath_], with: .fade)
+            }
+        case .move:
+            if let oldIndexPath = indexPath, let newIndexPath_ = newIndexPath {
+                tableView.moveRow(at: oldIndexPath, to: newIndexPath_)
+            }
+        default:
+            break
+        }
+    }
+     
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+}
+

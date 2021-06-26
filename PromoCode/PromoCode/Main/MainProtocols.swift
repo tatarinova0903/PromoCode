@@ -22,14 +22,20 @@ protocol MainViewInput: class {
 
 protocol MainViewOutput: class {
     func viewDidLoad()
+    
     func getPromoCode(forIndex index: Int) -> PromoCode
     func getDataCount() -> Int
+    
+    func addToFavoritesDidTapped(promocode: PromoCode)
 }
 
 protocol MainInteractorInput: class {
     func viewDidLoad()
+    
     func getDataCount() -> Int
     func getPromoCode(forIndex index: Int) -> PromoCode
+    
+    func addToFavorites(promocode: PromoCode)
 }
 
 protocol MainInteractorOutput: class {

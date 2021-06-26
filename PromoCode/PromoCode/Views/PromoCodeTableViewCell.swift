@@ -29,7 +29,7 @@ final class PromoCodeTableViewCell: UITableViewCell {
     }()
     
     private var promocode = PromoCode()
-    private var isLiked: Bool = false
+//    private var isLiked: Bool = false
     
     // MARK: - Init
     
@@ -73,18 +73,18 @@ final class PromoCodeTableViewCell: UITableViewCell {
     func configureCell(with promocode: PromoCode) {
         self.promocode = promocode
         label.text = promocode.service
-        addToFavorites.image = isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
-        addToFavorites.tintColor = isLiked ? UIColor.systemPink : UIColor.gray
+        addToFavorites.image = promocode.isInFavorites ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        addToFavorites.tintColor = promocode.isInFavorites ? UIColor.systemPink : UIColor.gray
     }
     
     // MARK: - Handlers
     
     @objc
     func addToFavoritesDidTapped() {
+        promocode.isInFavorites.toggle()
         delegate?.addToFavoritesDidTapped(promocode: promocode)
-        isLiked.toggle()
-        addToFavorites.image = isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
-        addToFavorites.tintColor = isLiked ? UIColor.systemPink : UIColor.gray
+        addToFavorites.image = promocode.isInFavorites ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+        addToFavorites.tintColor = promocode.isInFavorites ? UIColor.systemPink : UIColor.gray
     }
     
 }

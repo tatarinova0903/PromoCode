@@ -32,18 +32,20 @@ extension FavoritesPresenter: FavoritesModuleInput {
 }
 
 extension FavoritesPresenter: FavoritesViewOutput {
+    func getNumberOfSections() -> Int {
+        interactor.getNumberOfSections()
+    }
     
     func viewDidLoad() {
-        interactor.getAllPromocodes()
-        view?.reloadData()
+        interactor.getAllPromocodes(delegate: view)
     }
     
-    func getPromoCode(forIndex index: Int) -> FavPromoCode {
-        interactor.getPromoCode(forIndex: index)
+    func getPromoCode(forIndexPath indexPath: IndexPath) -> FavPromoCode {
+        interactor.getPromoCode(forIndexPath: indexPath)
     }
     
-    func getDataCount() -> Int {
-        interactor.getDataCount()
+    func getNumberOfRowsInSection(_ section: Int) -> Int {
+        interactor.getNumberOfRowsInSection(section)
     }
 }
 

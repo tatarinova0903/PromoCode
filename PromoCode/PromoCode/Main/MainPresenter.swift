@@ -36,6 +36,10 @@ extension MainPresenter: MainViewOutput {
     func getDataCount() -> Int {
         interactor.getDataCount()
     }
+    
+    func addToFavoritesDidTapped(promocode: PromoCode) {
+        interactor.addToFavorites(promocode: promocode)
+    }
 }
 
 extension MainPresenter: MainInteractorOutput {

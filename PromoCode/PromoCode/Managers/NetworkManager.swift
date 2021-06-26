@@ -19,10 +19,12 @@ final class NetworkManager: NetworkManagerDescription {
     
     private let database = Firestore.firestore()
     
+    private let coreDataManager: CoreDataManagerDescription = CoreDataManager.shared
+    
     private init() { }
     
     func getPromocodes(for sphere: Spheres, completion: @escaping (Result<[PromoCode], СustomError>) -> Void) {
-        database.collection(sphere.rawValue).getDocuments { (querySnapshot, error) in
+        database.collection(sphere.rawValue).getDocuments { [weak self] (querySnapshot, error) in
             if error != nil {
                 completion(.failure(СustomError.error))
                 return
@@ -34,9 +36,10 @@ final class NetworkManager: NetworkManagerDescription {
             }
             var promocodes = [PromoCode]()
             for document in documents {
-                guard let promocode = PromocodesConverter.promocode(from: document.data()) else {
+                guard var promocode = PromocodesConverter.promocode(from: document.data()) else {
                     continue
                 }
+                promocode.isInFavorites = (self?.coreDataManager.isInCoreDataBase(promocode: promocode)) ?? false
                 promocodes.append(promocode)
             }
             completion(.success(promocodes))

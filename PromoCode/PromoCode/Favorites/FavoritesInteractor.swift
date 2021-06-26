@@ -6,32 +6,36 @@
 //  
 //
 
-import Foundation
+import UIKit
+import CoreData
 
 final class FavoritesInteractor {
     weak var output: FavoritesInteractorOutput?
     
-    private let coreDataManager = CoreDataManager.shared
+    private let coreDataManager: CoreDataManagerDescription = CoreDataManager.shared
     
     private var data = [FavPromoCode]()
-    
-//    let data: [PromoCode] = [PromoCode(service: "Кинопоиск", promocode: "34RFD67T", description: "Описание", date: Date()),
-//                             PromoCode(service: "Амедиатека", promocode: "GTD45DYR", description: "Описание", date: Date()),
-//                             PromoCode(service: "Нетфликс", promocode: "76YFYTF34", description: "Описание", date: Date()),
-//                             PromoCode(service: "БургерКинг", promocode: "YFRGY65GE", description: "Описание", date: Date())]
+        
+    private let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+
 }
 
 extension FavoritesInteractor: FavoritesInteractorInput {
-    
-    func getAllPromocodes() {
-        data = coreDataManager.getPromoCodes()
+    func getNumberOfRowsInSection(_ section: Int) -> Int {
+        coreDataManager.getNumberOfRowsInSection(section)
     }
     
-    func getDataCount() -> Int {
-        data.count
+    func getNumberOfSections() -> Int {
+        coreDataManager.getNumberOfSections()
     }
     
-    func getPromoCode(forIndex index: Int) -> FavPromoCode {
-        data[index]
+    
+    func getAllPromocodes(delegate: FavoritesViewInput?) {
+        data = coreDataManager.getPromoCodes(delegate: delegate)
     }
+    
+    func getPromoCode(forIndexPath indexPath: IndexPath) -> FavPromoCode {
+        coreDataManager.getPromocode(byIndexPath: indexPath)
+    }
+
 }

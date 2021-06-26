@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 protocol FavoritesModuleInput {
 	var moduleOutput: FavoritesModuleOutput? { get }
@@ -15,20 +16,22 @@ protocol FavoritesModuleInput {
 protocol FavoritesModuleOutput: class {
 }
 
-protocol FavoritesViewInput: class {
+protocol FavoritesViewInput: class, NSFetchedResultsControllerDelegate {
     func reloadData()
 }
 
 protocol FavoritesViewOutput: class {
     func viewDidLoad()
-    func getDataCount() -> Int
-    func getPromoCode(forIndex index: Int) -> FavPromoCode
+    func getNumberOfRowsInSection(_ section: Int) -> Int
+    func getNumberOfSections() -> Int
+    func getPromoCode(forIndexPath indexPath: IndexPath) -> FavPromoCode
 }
 
 protocol FavoritesInteractorInput: class {
-    func getAllPromocodes() 
-    func getDataCount() -> Int
-    func getPromoCode(forIndex index: Int) -> FavPromoCode
+    func getAllPromocodes(delegate: FavoritesViewInput?)
+    func getNumberOfRowsInSection(_ section: Int) -> Int
+    func getNumberOfSections() -> Int
+    func getPromoCode(forIndexPath indexPath: IndexPath) -> FavPromoCode
 }
 
 protocol FavoritesInteractorOutput: class {

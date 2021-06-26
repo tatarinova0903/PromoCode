@@ -11,7 +11,8 @@ import Foundation
 final class MainInteractor {
 	weak var output: MainInteractorOutput?
     
-    private let networkManager = NetworkManager.shared
+    private let networkManager: NetworkManagerDescription = NetworkManager.shared
+    private let coreDataManager: CoreDataManagerDescription = CoreDataManager.shared
     
     private var data = [PromoCode]()
 }
@@ -37,6 +38,14 @@ extension MainInteractor: MainInteractorInput {
     
     func getPromoCode(forIndex index: Int) -> PromoCode {
         data[index]
+    }
+    
+    func addToFavorites(promocode: PromoCode) {
+        if promocode.isInFavorites {
+            coreDataManager.addPromoCode(promocode: promocode)
+        } else {
+            coreDataManager.deletePromoCode(promocode: promocode)
+        }
     }
     
 }

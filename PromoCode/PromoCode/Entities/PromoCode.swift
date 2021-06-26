@@ -20,4 +20,5 @@ struct PromoCode {
     var promocode: String = ""
     var description: String = ""
     var date: Date = Date()
+    var isInFavorites: Bool = false
 }

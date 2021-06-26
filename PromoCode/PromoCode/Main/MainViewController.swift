@@ -84,6 +84,8 @@ extension MainViewController: MainViewInput {
     }
     
     func addToFavoritesDidTapped(promocode: PromoCode) {
-        print(promocode.service)
+        output.addToFavoritesDidTapped(promocode: promocode)
     }
+    
+    
 }
