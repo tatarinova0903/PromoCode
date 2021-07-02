@@ -9,6 +9,9 @@
 import Foundation
 
 final class MainPresenter {
+    
+    // MARK: - Properties
+    
 	weak var view: MainViewInput?
     weak var moduleOutput: MainModuleOutput?
 
@@ -17,15 +20,21 @@ final class MainPresenter {
     
     private var sphere: Spheres = .films
 
+    // MARK: - Init
+    
     init(router: MainRouterInput, interactor: MainInteractorInput) {
         self.router = router
         self.interactor = interactor
     }
     
+    // MARK: - Handlers
+    
     func getPromocodes(for sphere: Spheres) {
         interactor.getPromocodes(for: sphere)
     }
 }
+
+// MARK: - Extensions
 
 extension MainPresenter: MainModuleInput {
 }
@@ -62,6 +71,10 @@ extension MainPresenter: MainViewOutput {
 extension MainPresenter: MainInteractorOutput {
     func promocodesDidLoad() {
         view?.stopActivityIndicator()
+        view?.reloadData()
+    }
+    
+    func cleanView() {
         view?.reloadData()
     }
 }

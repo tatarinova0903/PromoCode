@@ -9,6 +9,9 @@
 import Foundation
 
 final class MainInteractor {
+    
+    // MARK: - Properties
+    
 	weak var output: MainInteractorOutput?
     
     private let networkManager: NetworkManagerDescription = NetworkManager.shared
@@ -17,10 +20,13 @@ final class MainInteractor {
     private var data = [PromoCode]()
 }
 
+// MARK: - Extensions
+
 extension MainInteractor: MainInteractorInput {
     
     func getPromocodes(for sphere: Spheres) {
         data.removeAll()
+        output?.cleanView()
         networkManager.getPromocodes(for: sphere) { [weak self] (res) in
             guard let self = self else { return }
             switch res {

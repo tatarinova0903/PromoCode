@@ -55,6 +55,7 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Главная"
         output.viewDidLoad()
         [tableView, collectionView, activityIndicator].forEach{ view.addSubview($0) }
         configureTableView()
@@ -85,8 +86,6 @@ final class MainViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    
-    // MARK: - Handlers
 }
 
 // MARK: - Extensions

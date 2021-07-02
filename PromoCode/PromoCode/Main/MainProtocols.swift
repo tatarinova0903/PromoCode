@@ -44,6 +44,7 @@ protocol MainInteractorInput: class {
 
 protocol MainInteractorOutput: class {
     func promocodesDidLoad()
+    func cleanView()
 }
 
 protocol MainRouterInput: class {

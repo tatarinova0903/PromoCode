@@ -19,12 +19,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        let container = CustomTabBarContainer.assemble()
+        let tabBarContainer = CustomTabBarContainer.assemble()
         
         let mainContainer = MainContainer.assemble()
+        let mainNC = UINavigationController(rootViewController: mainContainer.viewController)
+        
         let favoritesContainer = FavoritesContainer.assemble()
-        container.tabBarController.setViewControllers([mainContainer.viewController, favoritesContainer.viewController], animated: true)
-        window.rootViewController = container.tabBarController
+        let favoritesNC = UINavigationController(rootViewController: favoritesContainer.viewController)
+        
+        tabBarContainer.tabBarController.setViewControllers([mainNC, favoritesNC], animated: true)
+        tabBarContainer.tabBarController.tabBar.tintColor = .systemPink
+        window.rootViewController = tabBarContainer.tabBarController
         window.makeKeyAndVisible()
         self.window = window
     }

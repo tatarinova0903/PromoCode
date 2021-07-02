@@ -36,6 +36,7 @@ final class FavoritesViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        title = "Избранное"
         output.viewDidLoad()
         view.addSubview(tableView)
         view.addSubview(addButton)
