@@ -12,6 +12,7 @@
 		431F931D268F0FD900F76A85 /* CustomSphereTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F931C268F0FD900F76A85 /* CustomSphereTextField.swift */; };
 		431F9322268F180800F76A85 /* CustomAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F9321268F180800F76A85 /* CustomAddButton.swift */; };
 		431F9326268F209900F76A85 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F9325268F209900F76A85 /* UIColor + Extension.swift */; };
+		431F932D268F434300F76A85 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F932C268F434300F76A85 /* UIView + Extension.swift */; };
 		432CEF112684A39600402C32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432CEF102684A39600402C32 /* AppDelegate.swift */; };
 		432CEF132684A39600402C32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432CEF122684A39600402C32 /* SceneDelegate.swift */; };
 		432CEF1B2684A39600402C32 /* PromoCode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 432CEF192684A39600402C32 /* PromoCode.xcdatamodeld */; };
@@ -55,6 +56,7 @@
 		431F931C268F0FD900F76A85 /* CustomSphereTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSphereTextField.swift; sourceTree = "<group>"; };
 		431F9321268F180800F76A85 /* CustomAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddButton.swift; sourceTree = "<group>"; };
 		431F9325268F209900F76A85 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		431F932C268F434300F76A85 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		432CEF0D2684A39600402C32 /* PromoCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PromoCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		432CEF102684A39600402C32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		432CEF122684A39600402C32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				431F9325268F209900F76A85 /* UIColor + Extension.swift */,
+				431F932C268F434300F76A85 /* UIView + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				432D91262685E0120079279E /* PromoCodeCollectionViewCell.swift in Sources */,
 				432D911F2685D5590079279E /* FavPromoCode+CoreDataProperties.swift in Sources */,
 				4396A1842684AEBB005623CF /* FavoritesViewController.swift in Sources */,
+				431F932D268F434300F76A85 /* UIView + Extension.swift in Sources */,
 				4396A1952684AF71005623CF /* MainContainer.swift in Sources */,
 				431F931A268EF2F200F76A85 /* PromocodeCollectionView.swift in Sources */,
 				43F637982684C239008D8363 /* CustomTabBarProtocols.swift in Sources */,

@@ -12,10 +12,8 @@ class PromocodeCollectionView: UICollectionView {
     init() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 2
-        layout.minimumInteritemSpacing = 2
         super.init(frame: .zero, collectionViewLayout: layout)
-        backgroundColor = .red
+        backgroundColor = .darkGray
         showsHorizontalScrollIndicator = false
         register(PromoCodeCollectionViewCell.self, forCellWithReuseIdentifier: PromoCodeCollectionViewCell.description().description)
     }

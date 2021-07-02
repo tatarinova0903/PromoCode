@@ -48,7 +48,7 @@ final class PromoCodeCollectionViewCell: UICollectionViewCell {
         [promocodeLabel, serviceLabel, addToFavorites].forEach { contentView.addSubview($0) }
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(addToFavoritesDidTapped))
         addToFavorites.addGestureRecognizer(tapRecognizer)
-        contentView.layer.cornerRadius = 20
+        configureLayer()
     }
     
     required init?(coder: NSCoder) {
@@ -59,6 +59,7 @@ final class PromoCodeCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        contentView.pin.all(5)
         serviceLabel.pin
             .top(5)
             .left(20)
@@ -85,6 +86,14 @@ final class PromoCodeCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Configures
+    
+    func configureLayer() {
+        contentView.layer.cornerRadius = 20
+        contentView.layer.shadowColor = UIColor.white.cgColor
+        contentView.layer.shadowRadius = 3
+        contentView.layer.shadowOpacity = 0.4
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
+    }
     
     func configureCell(with promocode: PromoCode) {
         self.promocode = promocode

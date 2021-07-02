@@ -11,14 +11,21 @@ final class CustomSphereTextField: UITextField {
     
     // MARK: - Properties
     
-    let insets: UIEdgeInsets
+    private let insets: UIEdgeInsets
     
     // MARK: - Init
     
-    init(insets: UIEdgeInsets, cornerRadius: CGFloat = 0) {
+    init(insets: UIEdgeInsets) {
         self.insets = insets
         super.init(frame: .zero)
-        layer.cornerRadius = cornerRadius
+        backgroundColor = .mediumGray
+        textColor = .white
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.shadowColor = UIColor.white.cgColor
+        layer.shadowRadius = 2
+        layer.shadowOpacity = 0.3
+        layer.shadowOffset = CGSize(width: 0, height: 0)
     }
 
     required init?(coder: NSCoder) {

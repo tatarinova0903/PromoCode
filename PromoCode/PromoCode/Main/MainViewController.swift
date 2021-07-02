@@ -31,8 +31,6 @@ final class MainViewController: UIViewController {
     
     private let sphereTextField: CustomSphereTextField = {
         let sphereTextField = CustomSphereTextField(insets: LayersConstants.textFieldInsets)
-        sphereTextField.textColor = .blue
-        sphereTextField.backgroundColor = .white
         sphereTextField.textAlignment = .center
         sphereTextField.text = Spheres.films.inRussian()
         return sphereTextField
@@ -44,6 +42,7 @@ final class MainViewController: UIViewController {
         static let screenWidth = UIScreen.main.bounds.width
         static let textFieldInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         static let collectionViewConstant: CGFloat = 15
+        static let horisontalPadding: CGFloat = 10
     }
     
     // MARK: - Init
@@ -63,6 +62,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Главная"
+        view.backgroundColor = .darkGray
         output.viewDidLoad()
         [collectionView, sphereTextField, activityIndicator, addButton].forEach{ view.addSubview($0) }
         configureCollectionView()
@@ -73,17 +73,18 @@ final class MainViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         addButton.pin
-            .top(view.pin.safeArea.top)
-            .right()
+            .top(view.pin.safeArea.top + 10)
+            .right(LayersConstants.horisontalPadding)
             .size(CGSize(width: view.frame.height / LayersConstants.collectionViewConstant, height: view.frame.height / LayersConstants.collectionViewConstant))
         sphereTextField.pin
             .before(of: addButton, aligned: .center)
             .left()
+            .margin(LayersConstants.horisontalPadding)
             .height(view.frame.height / LayersConstants.collectionViewConstant)
         collectionView.pin
             .below(of: sphereTextField)
-            .marginTop(2)
-            .horizontally()
+            .marginTop(5)
+            .horizontally(LayersConstants.horisontalPadding)
             .bottom(view.pin.safeArea.bottom)
         activityIndicator.pin.center().sizeToFit()
     }
@@ -91,6 +92,7 @@ final class MainViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configureGradient()
+        configureCornerRadius()
     }
     
     // MARK: - Configures
@@ -116,6 +118,10 @@ final class MainViewController: UIViewController {
         let endY = 0.5 + addButton.frame.size.width / addButton.frame.size.height / 2
         addButton.gradientlayer.endPoint = CGPoint(x: 1, y: endY)
         addButton.layer.sublayers?.forEach({ $0.cornerRadius = addButton.bounds.width / 2 })
+    }
+    
+    private func configureCornerRadius() {
+        sphereTextField.makeRound()
     }
     
     // MARK: - Handlers
@@ -177,7 +183,7 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width / 2 - 10, height: view.frame.height / 8)
+        return CGSize(width: view.frame.width / 2 - LayersConstants.horisontalPadding * 2, height: view.frame.height / 8)
     }
 }
 
