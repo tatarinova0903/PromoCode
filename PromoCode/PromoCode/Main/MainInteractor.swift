@@ -19,8 +19,9 @@ final class MainInteractor {
 
 extension MainInteractor: MainInteractorInput {
     
-    func viewDidLoad() {
-        networkManager.getPromocodes(for: .films) { [weak self] (res) in
+    func getPromocodes(for sphere: Spheres) {
+        data.removeAll()
+        networkManager.getPromocodes(for: sphere) { [weak self] (res) in
             guard let self = self else { return }
             switch res {
             case .success(let promocodes):

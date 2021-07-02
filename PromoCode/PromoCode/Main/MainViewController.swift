@@ -15,13 +15,34 @@ final class MainViewController: UIViewController {
     
 	private let output: MainViewOutput
 
-    private let tableView = UITableView()
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .white
+        tableView.register(PromoCodeTableViewCell.self, forCellReuseIdentifier: PromoCodeTableViewCell.description())
+        tableView.separatorStyle = .none
+        return tableView
+    }()
+    
+    private var collectionView: CustomSpheresCollectionView = {
+        let collectionView = CustomSpheresCollectionView()
+        return collectionView
+    }()
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.isHidden = true
+        activityIndicator.color = .systemPink
+        return activityIndicator
+    }()
+    
+    private let collectionViewConstant: CGFloat = 15
     
     // MARK: - Init
 
     init(output: MainViewOutput) {
         self.output = output
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -35,26 +56,58 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewDidLoad()
-        view.addSubview(tableView)
+        [tableView, collectionView, activityIndicator].forEach{ view.addSubview($0) }
         configureTableView()
+        configureCollectionView()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        collectionView.pin
+            .top(view.pin.safeArea.top + 5)
+            .horizontally()
+            .height(view.frame.height / collectionViewConstant)
         tableView.pin
-            .all()
+            .below(of: collectionView)
+            .horizontally()
+            .bottom(view.pin.safeArea.bottom)
+        activityIndicator.pin.center().sizeToFit()
     }
     
     // MARK: - Configures
     
     private func configureTableView() {
-        tableView.backgroundColor = .white
-        tableView.register(PromoCodeTableViewCell.self, forCellReuseIdentifier: PromoCodeTableViewCell.description())
         tableView.delegate = self
         tableView.dataSource = self
     }
     
+    private func configureCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
     // MARK: - Handlers
+}
+
+// MARK: - Extensions
+
+extension MainViewController: MainViewInput {
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
+    func addToFavoritesDidTapped(promocode: PromoCode) {
+        output.addToFavoritesDidTapped(promocode: promocode)
+    }
+    
+    func stopActivityIndicator() {
+        activityIndicator.stopAnimating()
+    }
+    
+    func startActivityIndicator() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
 }
 
 extension MainViewController: UITableViewDataSource {
@@ -78,14 +131,30 @@ extension MainViewController: UITableViewDelegate {
     
 }
 
-extension MainViewController: MainViewInput {
-    func reloadData() {
-        tableView.reloadData()
+extension MainViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        Spheres.allCases.count
     }
     
-    func addToFavoritesDidTapped(promocode: PromoCode) {
-        output.addToFavoritesDidTapped(promocode: promocode)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let id = PromocodeSphereCollectionViewCell.description().description
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: id, for: indexPath) as? PromocodeSphereCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.configure(with: Spheres.allCases[indexPath.row].inRussian())
+        return cell
     }
-    
-    
 }
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width / 4, height: view.frame.height / collectionViewConstant)
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        output.currentSphere = Spheres.allCases[indexPath.row]
+    }
+}
+

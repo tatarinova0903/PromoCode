@@ -18,11 +18,16 @@ protocol MainModuleOutput: class {
 protocol MainViewInput: class {
     func reloadData()
     func addToFavoritesDidTapped(promocode: PromoCode)
+    func startActivityIndicator()
+    func stopActivityIndicator()
 }
 
 protocol MainViewOutput: class {
+    var currentSphere: Spheres { get set }
+    
     func viewDidLoad()
     
+//    func getPromocodes(for sphere: Spheres)
     func getPromoCode(forIndex index: Int) -> PromoCode
     func getDataCount() -> Int
     
@@ -30,8 +35,7 @@ protocol MainViewOutput: class {
 }
 
 protocol MainInteractorInput: class {
-    func viewDidLoad()
-    
+    func getPromocodes(for sphere: Spheres)
     func getDataCount() -> Int
     func getPromoCode(forIndex index: Int) -> PromoCode
     

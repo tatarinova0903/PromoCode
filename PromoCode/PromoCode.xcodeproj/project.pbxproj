@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43079E342685B2CD00866193 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43079E332685B2CD00866193 /* GoogleService-Info.plist */; };
+		431F931A268EF2F200F76A85 /* CustomSpheresCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F9319268EF2F200F76A85 /* CustomSpheresCollectionView.swift */; };
 		432CEF112684A39600402C32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432CEF102684A39600402C32 /* AppDelegate.swift */; };
 		432CEF132684A39600402C32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432CEF122684A39600402C32 /* SceneDelegate.swift */; };
 		432CEF1B2684A39600402C32 /* PromoCode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 432CEF192684A39600402C32 /* PromoCode.xcdatamodeld */; };
@@ -16,7 +17,7 @@
 		432D91002685BF1F0079279E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D90FF2685BF1F0079279E /* NetworkManager.swift */; };
 		432D91052685C0150079279E /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91042685C0150079279E /* CustomError.swift */; };
 		432D910A2685C1F60079279E /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91092685C1F60079279E /* Converter.swift */; };
-		432D910E2685C30B0079279E /* FireBaseKays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D910D2685C30B0079279E /* FireBaseKays.swift */; };
+		432D910E2685C30B0079279E /* FireBaseKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D910D2685C30B0079279E /* FireBaseKeys.swift */; };
 		432D911E2685D5590079279E /* FavPromoCode+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D911C2685D5590079279E /* FavPromoCode+CoreDataClass.swift */; };
 		432D911F2685D5590079279E /* FavPromoCode+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D911D2685D5590079279E /* FavPromoCode+CoreDataProperties.swift */; };
 		432D91222685D6B70079279E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91212685D6B70079279E /* CoreDataManager.swift */; };
@@ -40,6 +41,8 @@
 		43F637982684C239008D8363 /* CustomTabBarProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F637922684C239008D8363 /* CustomTabBarProtocols.swift */; };
 		43F637992684C239008D8363 /* CustomTabBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F637932684C239008D8363 /* CustomTabBarInteractor.swift */; };
 		43F6379A2684C239008D8363 /* CustomTabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F637942684C239008D8363 /* CustomTabBarContainer.swift */; };
+		43FCE4FC268DDA95002E29B9 /* PromocodeSphereCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FCE4FB268DDA95002E29B9 /* PromocodeSphereCollectionViewCell.swift */; };
+		43FCE500268DE9D7002E29B9 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FCE4FF268DE9D7002E29B9 /* CustomLabel.swift */; };
 		FA9E9BEF3732856EB11CEF30 /* Pods_PromoCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C6FFA61D33A3170594815D9 /* Pods_PromoCode.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +50,7 @@
 		18232A60848D03BE2DE5963D /* Pods-PromoCode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromoCode.debug.xcconfig"; path = "Target Support Files/Pods-PromoCode/Pods-PromoCode.debug.xcconfig"; sourceTree = "<group>"; };
 		3C6FFA61D33A3170594815D9 /* Pods_PromoCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PromoCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43079E332685B2CD00866193 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		431F9319268EF2F200F76A85 /* CustomSpheresCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSpheresCollectionView.swift; sourceTree = "<group>"; };
 		432CEF0D2684A39600402C32 /* PromoCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PromoCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		432CEF102684A39600402C32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		432CEF122684A39600402C32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,7 +61,7 @@
 		432D90FF2685BF1F0079279E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		432D91042685C0150079279E /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		432D91092685C1F60079279E /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
-		432D910D2685C30B0079279E /* FireBaseKays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseKays.swift; sourceTree = "<group>"; };
+		432D910D2685C30B0079279E /* FireBaseKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseKeys.swift; sourceTree = "<group>"; };
 		432D911C2685D5590079279E /* FavPromoCode+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavPromoCode+CoreDataClass.swift"; sourceTree = "<group>"; };
 		432D911D2685D5590079279E /* FavPromoCode+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavPromoCode+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		432D91212685D6B70079279E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 		43F637922684C239008D8363 /* CustomTabBarProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarProtocols.swift; sourceTree = "<group>"; };
 		43F637932684C239008D8363 /* CustomTabBarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarInteractor.swift; sourceTree = "<group>"; };
 		43F637942684C239008D8363 /* CustomTabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarContainer.swift; sourceTree = "<group>"; };
+		43FCE4FB268DDA95002E29B9 /* PromocodeSphereCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeSphereCollectionViewCell.swift; sourceTree = "<group>"; };
+		43FCE4FF268DE9D7002E29B9 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		F6F8D2C80FB706A5AA16BD31 /* Pods-PromoCode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromoCode.release.xcconfig"; path = "Target Support Files/Pods-PromoCode/Pods-PromoCode.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				432D91042685C0150079279E /* CustomError.swift */,
-				432D910D2685C30B0079279E /* FireBaseKays.swift */,
+				432D910D2685C30B0079279E /* FireBaseKeys.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -166,6 +172,9 @@
 			isa = PBXGroup;
 			children = (
 				432D91252685E0120079279E /* PromoCodeTableViewCell.swift */,
+				43FCE4FB268DDA95002E29B9 /* PromocodeSphereCollectionViewCell.swift */,
+				43FCE4FF268DE9D7002E29B9 /* CustomLabel.swift */,
+				431F9319268EF2F200F76A85 /* CustomSpheresCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -352,11 +361,12 @@
 			files = (
 				432D91002685BF1F0079279E /* NetworkManager.swift in Sources */,
 				4396A1832684AEBB005623CF /* FavoritesRouter.swift in Sources */,
-				432D910E2685C30B0079279E /* FireBaseKays.swift in Sources */,
+				432D910E2685C30B0079279E /* FireBaseKeys.swift in Sources */,
 				4396A1922684AF71005623CF /* MainViewController.swift in Sources */,
 				43F6378B2684C0CE008D8363 /* PromoCode.swift in Sources */,
 				432D910A2685C1F60079279E /* Converter.swift in Sources */,
 				43F637992684C239008D8363 /* CustomTabBarInteractor.swift in Sources */,
+				43FCE500268DE9D7002E29B9 /* CustomLabel.swift in Sources */,
 				43F637962684C239008D8363 /* CustomTabBarRouter.swift in Sources */,
 				4396A1932684AF71005623CF /* MainProtocols.swift in Sources */,
 				4396A1872684AEBB005623CF /* FavoritesContainer.swift in Sources */,
@@ -366,6 +376,8 @@
 				432D911F2685D5590079279E /* FavPromoCode+CoreDataProperties.swift in Sources */,
 				4396A1842684AEBB005623CF /* FavoritesViewController.swift in Sources */,
 				4396A1952684AF71005623CF /* MainContainer.swift in Sources */,
+				43FCE4FC268DDA95002E29B9 /* PromocodeSphereCollectionViewCell.swift in Sources */,
+				431F931A268EF2F200F76A85 /* CustomSpheresCollectionView.swift in Sources */,
 				43F637982684C239008D8363 /* CustomTabBarProtocols.swift in Sources */,
 				4396A1862684AEBB005623CF /* FavoritesInteractor.swift in Sources */,
 				4396A1912684AF71005623CF /* MainRouter.swift in Sources */,

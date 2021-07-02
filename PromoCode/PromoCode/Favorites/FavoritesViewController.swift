@@ -81,6 +81,11 @@ final class FavoritesViewController: UIViewController {
 // MARK: - Extensions
 
 extension FavoritesViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        output.getNumberOfSections()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         output.getNumberOfRowsInSection(section)
     }
@@ -105,39 +110,36 @@ extension FavoritesViewController: FavoritesViewInput {
 
 extension FavoritesViewController: NSFetchedResultsControllerDelegate {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return output.getNumberOfSections()
-    }
-
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
-    }
-          
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .insert:
-            if let newIndexPath_ = newIndexPath {
-                tableView.insertRows(at: [newIndexPath_], with: .fade)
-            }
-        case .delete:
-            if let newIndexPath_ = newIndexPath {
-                tableView.deleteRows(at: [newIndexPath_], with: .fade)
-            }
-        case .update:
-            if let newIndexPath_ = newIndexPath {
-                tableView.reloadRows(at: [newIndexPath_], with: .fade)
-            }
-        case .move:
-            if let oldIndexPath = indexPath, let newIndexPath_ = newIndexPath {
-                tableView.moveRow(at: oldIndexPath, to: newIndexPath_)
-            }
-        default:
-            break
-        }
-    }
+//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        tableView.beginUpdates()
+//    }
+//
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+//        switch type {
+//        case .insert:
+//            if let newIndexPath_ = newIndexPath {
+//                tableView.insertRows(at: [newIndexPath_], with: .fade)
+//            }
+//        case .delete:
+//            if let newIndexPath_ = newIndexPath {
+//                tableView.deleteRows(at: [newIndexPath_], with: .fade)
+//            }
+//        case .update:
+//            if let newIndexPath_ = newIndexPath {
+//                tableView.reloadRows(at: [newIndexPath_], with: .fade)
+//            }
+//        case .move:
+//            if let oldIndexPath = indexPath, let newIndexPath_ = newIndexPath {
+//                tableView.moveRow(at: oldIndexPath, to: newIndexPath_)
+//            }
+//        default:
+//            break
+//        }
+//    }
      
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
+//        tableView.endUpdates()
+        tableView.reloadData()
     }
 }
 
