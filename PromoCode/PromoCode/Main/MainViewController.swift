@@ -14,17 +14,9 @@ final class MainViewController: UIViewController {
     // MARK: - Properties
     
 	private let output: MainViewOutput
-
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .white
-        tableView.register(PromoCodeTableViewCell.self, forCellReuseIdentifier: PromoCodeTableViewCell.description())
-        tableView.separatorStyle = .none
-        return tableView
-    }()
     
-    private var collectionView: CustomSpheresCollectionView = {
-        let collectionView = CustomSpheresCollectionView()
+    private var collectionView: PromocodeCollectionView = {
+        let collectionView = PromocodeCollectionView()
         return collectionView
     }()
     
@@ -33,11 +25,26 @@ final class MainViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.isHidden = true
-        activityIndicator.color = .systemPink
+        activityIndicator.color = .darkPink
         return activityIndicator
     }()
     
-    private let collectionViewConstant: CGFloat = 15
+    private let sphereTextField: CustomSphereTextField = {
+        let sphereTextField = CustomSphereTextField(insets: LayersConstants.textFieldInsets)
+        sphereTextField.textColor = .blue
+        sphereTextField.backgroundColor = .white
+        sphereTextField.textAlignment = .center
+        sphereTextField.text = Spheres.films.inRussian()
+        return sphereTextField
+    }()
+    
+    private let addButton = CustomAddButton()
+    
+    private struct LayersConstants {
+        static let screenWidth = UIScreen.main.bounds.width
+        static let textFieldInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        static let collectionViewConstant: CGFloat = 15
+    }
     
     // MARK: - Init
 
@@ -57,34 +64,73 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         title = "Главная"
         output.viewDidLoad()
-        [tableView, collectionView, activityIndicator].forEach{ view.addSubview($0) }
-        configureTableView()
+        [collectionView, sphereTextField, activityIndicator, addButton].forEach{ view.addSubview($0) }
         configureCollectionView()
+        configurePicker()
+        configureAddButton()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        addButton.pin
+            .top(view.pin.safeArea.top)
+            .right()
+            .size(CGSize(width: view.frame.height / LayersConstants.collectionViewConstant, height: view.frame.height / LayersConstants.collectionViewConstant))
+        sphereTextField.pin
+            .before(of: addButton, aligned: .center)
+            .left()
+            .height(view.frame.height / LayersConstants.collectionViewConstant)
         collectionView.pin
-            .top(view.pin.safeArea.top + 5)
-            .horizontally()
-            .height(view.frame.height / collectionViewConstant)
-        tableView.pin
-            .below(of: collectionView)
+            .below(of: sphereTextField)
+            .marginTop(2)
             .horizontally()
             .bottom(view.pin.safeArea.bottom)
         activityIndicator.pin.center().sizeToFit()
     }
     
-    // MARK: - Configures
-    
-    private func configureTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        configureGradient()
     }
+    
+    // MARK: - Configures
     
     private func configureCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+    }
+    
+    private func configurePicker() {
+        let spherePicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: LayersConstants.screenWidth, height: 216))
+        spherePicker.delegate = self
+        spherePicker.dataSource = self
+        sphereTextField.setInputViewSpherePicker(with: spherePicker, target: self, selector: #selector(doneSphereTapped))
+    }
+    
+    private func configureAddButton() {
+        addButton.addTarget(self, action: #selector(addButtonDidTapped), for: .touchUpInside)
+    }
+    
+    private func configureGradient() {
+        addButton.gradientlayer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        let endY = 0.5 + addButton.frame.size.width / addButton.frame.size.height / 2
+        addButton.gradientlayer.endPoint = CGPoint(x: 1, y: endY)
+        addButton.layer.sublayers?.forEach({ $0.cornerRadius = addButton.bounds.width / 2 })
+    }
+    
+    // MARK: - Handlers
+    
+    @objc
+    private func addButtonDidTapped() {
+        print(#function)
+    }
+    
+    @objc
+    private func doneSphereTapped() {
+        if let spherePicker = self.sphereTextField.inputView as? UIPickerView {
+            output.doneSphereTapped(sphere: Spheres.allCases[spherePicker.selectedRow(inComponent: 0)])
+        }
+        self.sphereTextField.resignFirstResponder()
     }
 }
 
@@ -92,7 +138,7 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: MainViewInput {
     func reloadData() {
-        tableView.reloadData()
+        collectionView.reloadData()
     }
     
     func addToFavoritesDidTapped(promocode: PromoCode) {
@@ -107,17 +153,20 @@ extension MainViewController: MainViewInput {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
+    
+    func setSphere(with sphere: Spheres) {
+        sphereTextField.text = sphere.inRussian()
+    }
 }
 
-extension MainViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let res = output.getDataCount()
-        return res
+extension MainViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        output.getDataCount()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PromoCodeTableViewCell.description(), for: indexPath) as? PromoCodeTableViewCell else {
-            return UITableViewCell()
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PromoCodeCollectionViewCell.description(), for: indexPath) as? PromoCodeCollectionViewCell else {
+            return UICollectionViewCell()
         }
         let promoCode = output.getPromoCode(forIndex: indexPath.row)
         cell.delegate = self
@@ -126,34 +175,34 @@ extension MainViewController: UITableViewDataSource {
     }
 }
 
-extension MainViewController: UITableViewDelegate {
-    
-}
-
-extension MainViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        Spheres.allCases.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let id = PromocodeSphereCollectionViewCell.description().description
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: id, for: indexPath) as? PromocodeSphereCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        cell.configure(with: Spheres.allCases[indexPath.row].inRussian())
-        return cell
-    }
-}
-
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width / 4, height: view.frame.height / collectionViewConstant)
+        return CGSize(width: view.frame.width / 2 - 10, height: view.frame.height / 8)
     }
 }
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        output.currentSphere = Spheres.allCases[indexPath.row]
+        print(#function)
     }
 }
 
+extension MainViewController: UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        Spheres.allCases.count
+    }
+
+}
+
+extension MainViewController: UIPickerViewDelegate {
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        Spheres.allCases[row].inRussian()
+    }
+
+}

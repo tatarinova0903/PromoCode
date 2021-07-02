@@ -66,6 +66,11 @@ extension MainPresenter: MainViewOutput {
     func addToFavoritesDidTapped(promocode: PromoCode) {
         interactor.addToFavorites(promocode: promocode)
     }
+    
+    func doneSphereTapped(sphere: Spheres) {
+        currentSphere = sphere
+        view?.setSphere(with: sphere)
+    }
 }
 
 extension MainPresenter: MainInteractorOutput {

@@ -18,7 +18,7 @@ final class FavoritesContainer {
         let interactor = FavoritesInteractor()
         let presenter = FavoritesPresenter(router: router, interactor: interactor)
 		let viewController = FavoritesViewController(output: presenter)
-        viewController.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(systemName: "heart"), selectedImage: UIImage(systemName: "heart")?.withTintColor(.systemPink, renderingMode: .alwaysOriginal))
+        viewController.tabBarItem = UITabBarItem(title: "Избранное", image: UIImage(systemName: "heart"), selectedImage: UIImage(systemName: "heart")?.withTintColor(.darkPink, renderingMode: .alwaysOriginal))
 
 		presenter.view = viewController
 

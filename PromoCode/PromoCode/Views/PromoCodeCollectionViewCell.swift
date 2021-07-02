@@ -7,15 +7,24 @@
 
 import UIKit
 
-final class PromoCodeTableViewCell: UITableViewCell {
+final class PromoCodeCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
     weak var delegate: MainViewInput?
     
-    private let label: UILabel = {
+    private let serviceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
+        return label
+    }()
+    
+    private let promocodeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.textAlignment = .center
+        label.layer.borderWidth = 1
+        label.layer.borderColor = UIColor.darkGray.cgColor
         return label
     }()
     
@@ -29,18 +38,17 @@ final class PromoCodeTableViewCell: UITableViewCell {
     }()
     
     private var promocode = PromoCode()
-//    private var isLiked: Bool = false
     
     // MARK: - Init
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .clear
-        selectionStyle = .none
-        contentView.addSubview(label)
-        contentView.addSubview(addToFavorites)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .darkGray
+        contentView.backgroundColor = .white
+        [promocodeLabel, serviceLabel, addToFavorites].forEach { contentView.addSubview($0) }
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(addToFavoritesDidTapped))
         addToFavorites.addGestureRecognizer(tapRecognizer)
+        contentView.layer.cornerRadius = 20
     }
     
     required init?(coder: NSCoder) {
@@ -51,19 +59,27 @@ final class PromoCodeTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        label.pin
+        serviceLabel.pin
+            .top(5)
             .left(20)
-            .sizeToFit()
+            .right(5)
+            .sizeToFit(.width)
         addToFavorites.pin
-            .right(10)
-            .vertically()
-            .width(contentView.frame.height)
+            .bottom(5)
+            .right(5)
+            .size(CGSize(width: contentView.frame.height / 2.5, height: contentView.frame.height / 2.5))
+        promocodeLabel.pin
+            .bottom(10)
+            .left(20)
+            .right(to: addToFavorites.edge.left)
+            .marginRight(5)
+            .sizeToFit(.width)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         promocode = PromoCode()
-        label.text = nil
+        serviceLabel.text = nil
         addToFavorites.image = UIImage(systemName: "heart")
         addToFavorites.tintColor = UIColor.gray
     }
@@ -72,9 +88,10 @@ final class PromoCodeTableViewCell: UITableViewCell {
     
     func configureCell(with promocode: PromoCode) {
         self.promocode = promocode
-        label.text = promocode.service
+        serviceLabel.text = promocode.service
+        promocodeLabel.text = promocode.promocode
         addToFavorites.image = promocode.isInFavorites ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
-        addToFavorites.tintColor = promocode.isInFavorites ? UIColor.systemPink : UIColor.gray
+        addToFavorites.tintColor = promocode.isInFavorites ? UIColor.darkPink : UIColor.gray
     }
     
     // MARK: - Handlers
@@ -84,7 +101,7 @@ final class PromoCodeTableViewCell: UITableViewCell {
         promocode.isInFavorites.toggle()
         delegate?.addToFavoritesDidTapped(promocode: promocode)
         addToFavorites.image = promocode.isInFavorites ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
-        addToFavorites.tintColor = promocode.isInFavorites ? UIColor.systemPink : UIColor.gray
+        addToFavorites.tintColor = promocode.isInFavorites ? UIColor.darkPink : UIColor.gray
     }
     
 }

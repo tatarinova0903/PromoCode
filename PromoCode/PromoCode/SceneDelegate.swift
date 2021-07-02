@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let favoritesNC = UINavigationController(rootViewController: favoritesContainer.viewController)
         
         tabBarContainer.tabBarController.setViewControllers([mainNC, favoritesNC], animated: true)
-        tabBarContainer.tabBarController.tabBar.tintColor = .systemPink
+        tabBarContainer.tabBarController.tabBar.tintColor = .darkPink
         window.rootViewController = tabBarContainer.tabBarController
         window.makeKeyAndVisible()
         self.window = window

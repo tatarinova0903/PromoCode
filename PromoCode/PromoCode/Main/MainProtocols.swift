@@ -20,6 +20,7 @@ protocol MainViewInput: class {
     func addToFavoritesDidTapped(promocode: PromoCode)
     func startActivityIndicator()
     func stopActivityIndicator()
+    func setSphere(with sphere: Spheres)
 }
 
 protocol MainViewOutput: class {
@@ -27,11 +28,11 @@ protocol MainViewOutput: class {
     
     func viewDidLoad()
     
-//    func getPromocodes(for sphere: Spheres)
     func getPromoCode(forIndex index: Int) -> PromoCode
     func getDataCount() -> Int
     
     func addToFavoritesDidTapped(promocode: PromoCode)
+    func doneSphereTapped(sphere: Spheres)
 }
 
 protocol MainInteractorInput: class {

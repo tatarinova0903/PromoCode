@@ -19,7 +19,7 @@ final class MainContainer {
         let interactor = MainInteractor()
         let presenter = MainPresenter(router: router, interactor: interactor)
 		let viewController = MainViewController(output: presenter)
-        viewController.tabBarItem = UITabBarItem(title: "Главная", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass")?.withTintColor(.systemPink, renderingMode: .alwaysOriginal))
+        viewController.tabBarItem = UITabBarItem(title: "Главная", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass")?.withTintColor(.darkPink, renderingMode: .alwaysOriginal))
 
 		presenter.view = viewController
 //		presenter.moduleOutput = context.moduleOutput

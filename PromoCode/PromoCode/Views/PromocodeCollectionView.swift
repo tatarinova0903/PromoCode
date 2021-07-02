@@ -7,17 +7,17 @@
 
 import UIKit
 
-class CustomSpheresCollectionView: UICollectionView {
+class PromocodeCollectionView: UICollectionView {
 
     init() {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 2
         layout.minimumInteritemSpacing = 2
         super.init(frame: .zero, collectionViewLayout: layout)
         backgroundColor = .red
         showsHorizontalScrollIndicator = false
-        register(PromocodeSphereCollectionViewCell.self, forCellWithReuseIdentifier: PromocodeSphereCollectionViewCell.description().description)
+        register(PromoCodeCollectionViewCell.self, forCellWithReuseIdentifier: PromoCodeCollectionViewCell.description().description)
     }
     
     required init?(coder: NSCoder) {
