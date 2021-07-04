@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4302609826919B3700BDDD0A /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4302609726919B3700BDDD0A /* Date + Extension.swift */; };
 		43079E342685B2CD00866193 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43079E332685B2CD00866193 /* GoogleService-Info.plist */; };
 		431F931A268EF2F200F76A85 /* PromocodeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F9319268EF2F200F76A85 /* PromocodeCollectionView.swift */; };
 		431F931D268F0FD900F76A85 /* CustomSphereTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F931C268F0FD900F76A85 /* CustomSphereTextField.swift */; };
@@ -25,7 +26,9 @@
 		432D911E2685D5590079279E /* FavPromoCode+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D911C2685D5590079279E /* FavPromoCode+CoreDataClass.swift */; };
 		432D911F2685D5590079279E /* FavPromoCode+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D911D2685D5590079279E /* FavPromoCode+CoreDataProperties.swift */; };
 		432D91222685D6B70079279E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91212685D6B70079279E /* CoreDataManager.swift */; };
-		432D91262685E0120079279E /* PromoCodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91252685E0120079279E /* PromoCodeCollectionViewCell.swift */; };
+		432D91262685E0120079279E /* PromocodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91252685E0120079279E /* PromocodeCollectionViewCell.swift */; };
+		433110F2269041C4008DC02B /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433110F1269041C4008DC02B /* UIViewController + Extension.swift */; };
+		433110F526904217008DC02B /* PromocodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433110F426904217008DC02B /* PromocodeView.swift */; };
 		4396A1822684AEBB005623CF /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A17C2684AEBB005623CF /* FavoritesPresenter.swift */; };
 		4396A1832684AEBB005623CF /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A17D2684AEBB005623CF /* FavoritesRouter.swift */; };
 		4396A1842684AEBB005623CF /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A17E2684AEBB005623CF /* FavoritesViewController.swift */; };
@@ -51,6 +54,7 @@
 /* Begin PBXFileReference section */
 		18232A60848D03BE2DE5963D /* Pods-PromoCode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromoCode.debug.xcconfig"; path = "Target Support Files/Pods-PromoCode/Pods-PromoCode.debug.xcconfig"; sourceTree = "<group>"; };
 		3C6FFA61D33A3170594815D9 /* Pods_PromoCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PromoCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4302609726919B3700BDDD0A /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		43079E332685B2CD00866193 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		431F9319268EF2F200F76A85 /* PromocodeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeCollectionView.swift; sourceTree = "<group>"; };
 		431F931C268F0FD900F76A85 /* CustomSphereTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSphereTextField.swift; sourceTree = "<group>"; };
@@ -71,7 +75,9 @@
 		432D911C2685D5590079279E /* FavPromoCode+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavPromoCode+CoreDataClass.swift"; sourceTree = "<group>"; };
 		432D911D2685D5590079279E /* FavPromoCode+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavPromoCode+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		432D91212685D6B70079279E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		432D91252685E0120079279E /* PromoCodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoCodeCollectionViewCell.swift; sourceTree = "<group>"; };
+		432D91252685E0120079279E /* PromocodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeCollectionViewCell.swift; sourceTree = "<group>"; };
+		433110F1269041C4008DC02B /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		433110F426904217008DC02B /* PromocodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeView.swift; sourceTree = "<group>"; };
 		4396A17C2684AEBB005623CF /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		4396A17D2684AEBB005623CF /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		4396A17E2684AEBB005623CF /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +117,8 @@
 			children = (
 				431F9325268F209900F76A85 /* UIColor + Extension.swift */,
 				431F932C268F434300F76A85 /* UIView + Extension.swift */,
+				433110F1269041C4008DC02B /* UIViewController + Extension.swift */,
+				4302609726919B3700BDDD0A /* Date + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -185,10 +193,11 @@
 		432D91242685DF8D0079279E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				432D91252685E0120079279E /* PromoCodeCollectionViewCell.swift */,
+				432D91252685E0120079279E /* PromocodeCollectionViewCell.swift */,
 				431F9319268EF2F200F76A85 /* PromocodeCollectionView.swift */,
 				431F931C268F0FD900F76A85 /* CustomSphereTextField.swift */,
 				431F9321268F180800F76A85 /* CustomAddButton.swift */,
+				433110F426904217008DC02B /* PromocodeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -383,12 +392,13 @@
 				432D910A2685C1F60079279E /* Converter.swift in Sources */,
 				43F637992684C239008D8363 /* CustomTabBarInteractor.swift in Sources */,
 				43F637962684C239008D8363 /* CustomTabBarRouter.swift in Sources */,
+				433110F2269041C4008DC02B /* UIViewController + Extension.swift in Sources */,
 				4396A1932684AF71005623CF /* MainProtocols.swift in Sources */,
 				4396A1872684AEBB005623CF /* FavoritesContainer.swift in Sources */,
 				4396A1822684AEBB005623CF /* FavoritesPresenter.swift in Sources */,
 				43F637972684C239008D8363 /* CustomTabBarViewController.swift in Sources */,
 				431F9326268F209900F76A85 /* UIColor + Extension.swift in Sources */,
-				432D91262685E0120079279E /* PromoCodeCollectionViewCell.swift in Sources */,
+				432D91262685E0120079279E /* PromocodeCollectionViewCell.swift in Sources */,
 				432D911F2685D5590079279E /* FavPromoCode+CoreDataProperties.swift in Sources */,
 				4396A1842684AEBB005623CF /* FavoritesViewController.swift in Sources */,
 				431F932D268F434300F76A85 /* UIView + Extension.swift in Sources */,
@@ -399,6 +409,8 @@
 				4396A1912684AF71005623CF /* MainRouter.swift in Sources */,
 				4396A1942684AF71005623CF /* MainInteractor.swift in Sources */,
 				4396A1852684AEBB005623CF /* FavoritesProtocols.swift in Sources */,
+				4302609826919B3700BDDD0A /* Date + Extension.swift in Sources */,
+				433110F526904217008DC02B /* PromocodeView.swift in Sources */,
 				432D91052685C0150079279E /* CustomError.swift in Sources */,
 				432CEF112684A39600402C32 /* AppDelegate.swift in Sources */,
 				4396A1902684AF71005623CF /* MainPresenter.swift in Sources */,

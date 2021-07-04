@@ -12,18 +12,19 @@ protocol MainModuleInput {
 	var moduleOutput: MainModuleOutput? { get }
 }
 
-protocol MainModuleOutput: class {
+protocol MainModuleOutput: AnyObject {
 }
 
-protocol MainViewInput: class {
+protocol MainViewInput: AnyObject {
     func reloadData()
     func addToFavoritesDidTapped(promocode: PromoCode)
+    func changeCollectionCell(atIndex index: Int, with promocode: PromoCode)
     func startActivityIndicator()
     func stopActivityIndicator()
     func setSphere(with sphere: Spheres)
 }
 
-protocol MainViewOutput: class {
+protocol MainViewOutput: AnyObject {
     var currentSphere: Spheres { get set }
     
     func viewDidLoad()
@@ -35,18 +36,18 @@ protocol MainViewOutput: class {
     func doneSphereTapped(sphere: Spheres)
 }
 
-protocol MainInteractorInput: class {
+protocol MainInteractorInput: AnyObject {
     func getPromocodes(for sphere: Spheres)
     func getDataCount() -> Int
     func getPromoCode(forIndex index: Int) -> PromoCode
-    
+    func getIndex(for promocode: PromoCode) -> Int?
     func addToFavorites(promocode: PromoCode)
 }
 
-protocol MainInteractorOutput: class {
+protocol MainInteractorOutput: AnyObject {
     func promocodesDidLoad()
     func cleanView()
 }
 
-protocol MainRouterInput: class {
+protocol MainRouterInput: AnyObject {
 }

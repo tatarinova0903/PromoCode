@@ -55,4 +55,12 @@ extension MainInteractor: MainInteractorInput {
         }
     }
     
+    func deleteFromFavorites(promocode: PromoCode) {
+        coreDataManager.deletePromoCode(promocode: promocode)
+    }
+    
+    func getIndex(for promocode: PromoCode) -> Int? {
+        return data.firstIndex { $0.id == promocode.id }
+    }
+    
 }

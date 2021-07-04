@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PromoCodeCollectionViewCell: UICollectionViewCell {
+final class PromocodeCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
@@ -23,8 +23,9 @@ final class PromoCodeCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .black
         label.textAlignment = .center
-        label.layer.borderWidth = 1
-        label.layer.borderColor = UIColor.darkGray.cgColor
+        label.layer.borderWidth = 2
+        label.layer.borderColor = UIColor.darkPink.cgColor
+        label.layer.cornerRadius = 5
         return label
     }()
     
@@ -60,11 +61,6 @@ final class PromoCodeCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.pin.all(5)
-        serviceLabel.pin
-            .top(5)
-            .left(20)
-            .right(5)
-            .sizeToFit(.width)
         addToFavorites.pin
             .bottom(5)
             .right(5)
@@ -75,6 +71,12 @@ final class PromoCodeCollectionViewCell: UICollectionViewCell {
             .right(to: addToFavorites.edge.left)
             .marginRight(5)
             .sizeToFit(.width)
+        serviceLabel.pin
+            .top(5)
+            .bottom(to: promocodeLabel.edge.top)
+            .marginBottom(5)
+            .left(20)
+            .right(5)
     }
     
     override func prepareForReuse() {

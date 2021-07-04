@@ -38,12 +38,29 @@ final class MainViewController: UIViewController {
     
     private let addButton = CustomAddButton()
     
+    private let promocodeView: PromocodeView = {
+        let promocodeView = PromocodeView()
+        promocodeView.layer.cornerRadius = 20
+        promocodeView.isHidden = true
+        return promocodeView
+    }()
+    
+    private var blurBackgroundView: UIView = {
+        let view = UIView()
+        view.alpha = 0
+        return view
+    }()
+    
+    private lazy var tapPromocodeRecognizer = UITapGestureRecognizer(target: self, action: #selector(promocodeViewAnimation))
+    
     private struct LayersConstants {
         static let screenWidth = UIScreen.main.bounds.width
         static let textFieldInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         static let collectionViewConstant: CGFloat = 15
         static let horisontalPadding: CGFloat = 10
     }
+    
+    private var isPromocodeViewHidden = true
     
     // MARK: - Init
 
@@ -64,10 +81,11 @@ final class MainViewController: UIViewController {
         title = "Главная"
         view.backgroundColor = .darkGray
         output.viewDidLoad()
-        [collectionView, sphereTextField, activityIndicator, addButton].forEach{ view.addSubview($0) }
+        [collectionView, sphereTextField, activityIndicator, addButton, blurBackgroundView, promocodeView].forEach{ view.addSubview($0) }
         configureCollectionView()
         configurePicker()
         configureAddButton()
+        promocodeView.delegate = self
     }
     
     override func viewWillLayoutSubviews() {
@@ -87,12 +105,18 @@ final class MainViewController: UIViewController {
             .horizontally(LayersConstants.horisontalPadding)
             .bottom(view.pin.safeArea.bottom)
         activityIndicator.pin.center().sizeToFit()
+        blurBackgroundView.pin
+            .all()
+        promocodeView.pin
+            .center()
+            .size(CGSize(width: view.frame.width * 0.8, height: view.frame.width * 0.5))
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configureGradient()
         configureCornerRadius()
+        configureBlur()
     }
     
     // MARK: - Configures
@@ -124,7 +148,44 @@ final class MainViewController: UIViewController {
         sphereTextField.makeRound()
     }
     
+    private func configureBlur() {
+        let blurEffect = UIBlurEffect(style: .extraLight)
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.frame = view.bounds
+        blurredEffectView.alpha = 0.8
+        
+        blurBackgroundView.addSubview(blurredEffectView)
+    }
+    
     // MARK: - Handlers
+    
+    @objc
+    private func promocodeViewAnimation() {
+        var alpha: CGFloat = 0
+        dismissKeyboard()
+        
+        if isPromocodeViewHidden == true {
+            alpha = 1
+            promocodeView.isHidden = false
+            blurBackgroundView.isHidden = false
+            blurBackgroundView.addGestureRecognizer(tapPromocodeRecognizer)
+        }
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn]) { [weak self] in
+            self?.blurBackgroundView.alpha = alpha
+        }
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseOut]) { [weak self] in
+            self?.promocodeView.alpha = alpha
+        } completion: { [weak self] _ in
+            guard let self = self else { return }
+            if self.isPromocodeViewHidden == true {
+                self.promocodeView.isHidden = true
+                self.blurBackgroundView.gestureRecognizers?.removeAll()
+            }
+        }
+        isPromocodeViewHidden.toggle()
+    }
     
     @objc
     private func addButtonDidTapped() {
@@ -151,6 +212,13 @@ extension MainViewController: MainViewInput {
         output.addToFavoritesDidTapped(promocode: promocode)
     }
     
+    func changeCollectionCell(atIndex index: Int, with promocode: PromoCode) {
+        guard let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? PromocodeCollectionViewCell else {
+            return
+        }
+        cell.configureCell(with: promocode)
+    }
+    
     func stopActivityIndicator() {
         activityIndicator.stopAnimating()
     }
@@ -171,12 +239,12 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PromoCodeCollectionViewCell.description(), for: indexPath) as? PromoCodeCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PromocodeCollectionViewCell.description(), for: indexPath) as? PromocodeCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let promoCode = output.getPromoCode(forIndex: indexPath.row)
+        let promocode = output.getPromoCode(forIndex: indexPath.row)
         cell.delegate = self
-        cell.configureCell(with: promoCode)
+        cell.configureCell(with: promocode)
         return cell
     }
 }
@@ -189,7 +257,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
+        promocodeView.configure(with: output.getPromoCode(forIndex: indexPath.row))
+        promocodeViewAnimation()
     }
 }
 

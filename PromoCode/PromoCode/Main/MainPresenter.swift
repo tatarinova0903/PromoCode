@@ -64,6 +64,11 @@ extension MainPresenter: MainViewOutput {
     }
     
     func addToFavoritesDidTapped(promocode: PromoCode) {
+        let index = interactor.getIndex(for: promocode)
+        guard let safeIndex = index else {
+            return
+        }
+        view?.changeCollectionCell(atIndex: safeIndex, with: promocode)
         interactor.addToFavorites(promocode: promocode)
     }
     
