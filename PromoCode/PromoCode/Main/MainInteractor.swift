@@ -39,7 +39,7 @@ extension MainInteractor: MainInteractorInput {
         }
     }
     
-    func getDataCount() -> Int {
+    func getPromocodesCount() -> Int {
         data.count
     }
     
@@ -48,14 +48,20 @@ extension MainInteractor: MainInteractorInput {
     }
     
     func addToFavorites(promocode: PromoCode) {
-        if promocode.isInFavorites {
-            coreDataManager.addPromoCode(promocode: promocode)
-        } else {
-            coreDataManager.deletePromoCode(promocode: promocode)
+        let index = getIndex(for: promocode)
+        guard let safeIndex = index else {
+            return
         }
+        data[safeIndex].isInFavorites = promocode.isInFavorites
+        coreDataManager.addPromoCode(promocode: promocode)
     }
     
     func deleteFromFavorites(promocode: PromoCode) {
+        let index = getIndex(for: promocode)
+        guard let safeIndex = index else {
+            return
+        }
+        data[safeIndex].isInFavorites = promocode.isInFavorites
         coreDataManager.deletePromoCode(promocode: promocode)
     }
     

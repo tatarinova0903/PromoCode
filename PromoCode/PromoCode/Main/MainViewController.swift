@@ -15,7 +15,7 @@ final class MainViewController: UIViewController {
     
 	private let output: MainViewOutput
     
-    private var collectionView: PromocodeCollectionView = {
+    private var promocodeCollectionView: PromocodeCollectionView = {
         let collectionView = PromocodeCollectionView()
         return collectionView
     }()
@@ -29,11 +29,9 @@ final class MainViewController: UIViewController {
         return activityIndicator
     }()
     
-    private let sphereTextField: CustomSphereTextField = {
-        let sphereTextField = CustomSphereTextField(insets: LayersConstants.textFieldInsets)
-        sphereTextField.textAlignment = .center
-        sphereTextField.text = Spheres.films.inRussian()
-        return sphereTextField
+    private let spheresCollectionView: SpheresCollectionView = {
+        let collectionView = SpheresCollectionView()
+        return collectionView
     }()
     
     private let addButton = CustomAddButton()
@@ -56,8 +54,8 @@ final class MainViewController: UIViewController {
     private struct LayersConstants {
         static let screenWidth = UIScreen.main.bounds.width
         static let textFieldInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
-        static let collectionViewConstant: CGFloat = 15
         static let horisontalPadding: CGFloat = 10
+        static let spheresCollectionViewHeight: CGFloat = UIScreen.main.bounds.height / 15
     }
     
     private var isPromocodeViewHidden = true
@@ -78,13 +76,12 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        output.viewDidLoad()
         title = "Главная"
         view.backgroundColor = .darkGray
-        output.viewDidLoad()
-        [collectionView, sphereTextField, activityIndicator, addButton, blurBackgroundView, promocodeView].forEach{ view.addSubview($0) }
-        configureCollectionView()
-        configurePicker()
+        [promocodeCollectionView, spheresCollectionView, activityIndicator, addButton, blurBackgroundView, promocodeView].forEach{ view.addSubview($0) }
         configureAddButton()
+        configureCollectionView()
         promocodeView.delegate = self
     }
     
@@ -93,14 +90,14 @@ final class MainViewController: UIViewController {
         addButton.pin
             .top(view.pin.safeArea.top + 10)
             .right(LayersConstants.horisontalPadding)
-            .size(CGSize(width: view.frame.height / LayersConstants.collectionViewConstant, height: view.frame.height / LayersConstants.collectionViewConstant))
-        sphereTextField.pin
+            .size(CGSize(width: LayersConstants.spheresCollectionViewHeight, height: LayersConstants.spheresCollectionViewHeight))
+        spheresCollectionView.pin
             .before(of: addButton, aligned: .center)
             .left()
             .margin(LayersConstants.horisontalPadding)
-            .height(view.frame.height / LayersConstants.collectionViewConstant)
-        collectionView.pin
-            .below(of: sphereTextField)
+            .height(LayersConstants.spheresCollectionViewHeight)
+        promocodeCollectionView.pin
+            .below(of: spheresCollectionView)
             .marginTop(5)
             .horizontally(LayersConstants.horisontalPadding)
             .bottom(view.pin.safeArea.bottom)
@@ -115,22 +112,21 @@ final class MainViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configureGradient()
-        configureCornerRadius()
         configureBlur()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output.viewDidAppear()
     }
     
     // MARK: - Configures
     
     private func configureCollectionView() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
-    }
-    
-    private func configurePicker() {
-        let spherePicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: LayersConstants.screenWidth, height: 216))
-        spherePicker.delegate = self
-        spherePicker.dataSource = self
-        sphereTextField.setInputViewSpherePicker(with: spherePicker, target: self, selector: #selector(doneSphereTapped))
+        promocodeCollectionView.delegate = self
+        promocodeCollectionView.dataSource = self
+        spheresCollectionView.delegate = self
+        spheresCollectionView.dataSource = self
     }
     
     private func configureAddButton() {
@@ -143,11 +139,7 @@ final class MainViewController: UIViewController {
         addButton.gradientlayer.endPoint = CGPoint(x: 1, y: endY)
         addButton.layer.sublayers?.forEach({ $0.cornerRadius = addButton.bounds.width / 2 })
     }
-    
-    private func configureCornerRadius() {
-        sphereTextField.makeRound()
-    }
-    
+  
     private func configureBlur() {
         let blurEffect = UIBlurEffect(style: .extraLight)
         let blurredEffectView = UIVisualEffectView(effect: blurEffect)
@@ -191,32 +183,34 @@ final class MainViewController: UIViewController {
     private func addButtonDidTapped() {
         print(#function)
     }
-    
-    @objc
-    private func doneSphereTapped() {
-        if let spherePicker = self.sphereTextField.inputView as? UIPickerView {
-            output.doneSphereTapped(sphere: Spheres.allCases[spherePicker.selectedRow(inComponent: 0)])
-        }
-        self.sphereTextField.resignFirstResponder()
-    }
 }
 
 // MARK: - Extensions
 
 extension MainViewController: MainViewInput {
     func reloadData() {
-        collectionView.reloadData()
+        promocodeCollectionView.reloadData()
     }
     
     func addToFavoritesDidTapped(promocode: PromoCode) {
         output.addToFavoritesDidTapped(promocode: promocode)
     }
     
-    func changeCollectionCell(atIndex index: Int, with promocode: PromoCode) {
-        guard let cell = collectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? PromocodeCollectionViewCell else {
+    func changePromocodeCollectionCell(atIndex index: Int, with promocode: PromoCode) {
+        guard let cell = promocodeCollectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? PromocodeCollectionViewCell else {
             return
         }
         cell.configureCell(with: promocode)
+    }
+    
+    func changeSphereCollectionCell(atOldIndex oldIndex: Int?, atNewIndex newIndex: Int) {
+        if let oldIndex_ = oldIndex,
+           let cellForOldSphere = spheresCollectionView.cellForItem(at: IndexPath(row: oldIndex_, section: 0)) as? SpheresCollectionViewCell {
+            cellForOldSphere.configureCell(isChosen: false)
+        }
+        if let cellForNewSphere = spheresCollectionView.cellForItem(at: IndexPath(row: newIndex, section: 0)) as? SpheresCollectionViewCell {
+            cellForNewSphere.configureCell(isChosen: true)
+        }
     }
     
     func stopActivityIndicator() {
@@ -227,18 +221,26 @@ extension MainViewController: MainViewInput {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
-    
-    func setSphere(with sphere: Spheres) {
-        sphereTextField.text = sphere.inRussian()
-    }
 }
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        output.getDataCount()
+        guard let _ = collectionView as? PromocodeCollectionView else {
+            return output.getSpheresCount()
+        }
+        return output.getPromocodesCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let _ = collectionView as? PromocodeCollectionView else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SpheresCollectionViewCell.description(), for: indexPath) as? SpheresCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            let sphere = output.getSphere(forIndex: indexPath.row)
+            cell.delegate = self
+            cell.configureCell(with: sphere, isChosen: sphere == output.currentSphere)
+            return cell
+        }
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PromocodeCollectionViewCell.description(), for: indexPath) as? PromocodeCollectionViewCell else {
             return UICollectionViewCell()
         }
@@ -251,33 +253,29 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let _ = collectionView as? PromocodeCollectionView else {
+            let width = output.getSphereCellLength(forIndex: indexPath.row)
+            return CGSize(width: width, height: LayersConstants.spheresCollectionViewHeight)
+        }
         return CGSize(width: view.frame.width / 2 - LayersConstants.horisontalPadding * 2, height: view.frame.height / 8)
     }
 }
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let _ = collectionView as? PromocodeCollectionView else {
+            output.currentSphere = output.getSphere(forIndex: indexPath.row)
+            return
+        }
         promocodeView.configure(with: output.getPromoCode(forIndex: indexPath.row))
         promocodeViewAnimation()
     }
-}
-
-extension MainViewController: UIPickerViewDataSource {
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        Spheres.allCases.count
-    }
-
-}
-
-extension MainViewController: UIPickerViewDelegate {
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        Spheres.allCases[row].inRussian()
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let _ = collectionView as? PromocodeCollectionView else { return }
+        cell.alpha = 0
+        UIView.animate(withDuration: 1) {
+            cell.alpha = 1.0
+        }
     }
-
 }

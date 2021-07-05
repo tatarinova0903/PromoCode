@@ -6,7 +6,7 @@
 //  
 //
 
-import Foundation
+import UIKit
 
 final class MainPresenter {
     
@@ -30,7 +30,12 @@ final class MainPresenter {
     // MARK: - Handlers
     
     func getPromocodes(for sphere: Spheres) {
+        view?.startActivityIndicator()
         interactor.getPromocodes(for: sphere)
+    }
+    
+    func getIndex(for sphere: Spheres) -> Int? {
+        Spheres.allCases.firstIndex(of: sphere)
     }
 }
 
@@ -45,22 +50,40 @@ extension MainPresenter: MainViewOutput {
            sphere
         }
         set {
-            sphere = newValue
-            view?.startActivityIndicator()
+            guard let oldIndex = getIndex(for: sphere), let newIndex = getIndex(for: newValue) else { return }
             getPromocodes(for: newValue)
+            view?.changeSphereCollectionCell(atOldIndex: oldIndex, atNewIndex: newIndex)
+            sphere = newValue
         }
     }
+    
     func viewDidLoad() {
-        view?.startActivityIndicator()
-        interactor.getPromocodes(for: sphere)
+        currentSphere = .films
+    }
+    
+    func viewDidAppear() {
+        view?.changeSphereCollectionCell(atOldIndex: nil, atNewIndex: 0)
     }
     
     func getPromoCode(forIndex index: Int) -> PromoCode {
         interactor.getPromoCode(forIndex: index)
     }
     
-    func getDataCount() -> Int {
-        interactor.getDataCount()
+    func getPromocodesCount() -> Int {
+        interactor.getPromocodesCount()
+    }
+    
+    func getSpheresCount() -> Int {
+        Spheres.allCases.count
+    }
+    
+    func getSphere(forIndex index: Int) -> Spheres {
+        Spheres.allCases[index]
+    }
+    
+    func getSphereCellLength(forIndex index: Int) -> CGFloat {
+        let sphere = Spheres.allCases[index]
+        return CGFloat(sphere.inRussian().count * 20)
     }
     
     func addToFavoritesDidTapped(promocode: PromoCode) {
@@ -68,13 +91,12 @@ extension MainPresenter: MainViewOutput {
         guard let safeIndex = index else {
             return
         }
-        view?.changeCollectionCell(atIndex: safeIndex, with: promocode)
-        interactor.addToFavorites(promocode: promocode)
-    }
-    
-    func doneSphereTapped(sphere: Spheres) {
-        currentSphere = sphere
-        view?.setSphere(with: sphere)
+        view?.changePromocodeCollectionCell(atIndex: safeIndex, with: promocode)
+        if promocode.isInFavorites {
+            interactor.addToFavorites(promocode: promocode)
+        } else {
+            interactor.deleteFromFavorites(promocode: promocode)
+        }
     }
 }
 

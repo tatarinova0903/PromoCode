@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4302609826919B3700BDDD0A /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4302609726919B3700BDDD0A /* Date + Extension.swift */; };
+		4302609C26919DE000BDDD0A /* SpheresCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4302609B26919DE000BDDD0A /* SpheresCollectionView.swift */; };
+		4302609F26919E2000BDDD0A /* SpheresCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4302609E26919E2000BDDD0A /* SpheresCollectionViewCell.swift */; };
 		43079E342685B2CD00866193 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43079E332685B2CD00866193 /* GoogleService-Info.plist */; };
 		431F931A268EF2F200F76A85 /* PromocodeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F9319268EF2F200F76A85 /* PromocodeCollectionView.swift */; };
-		431F931D268F0FD900F76A85 /* CustomSphereTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F931C268F0FD900F76A85 /* CustomSphereTextField.swift */; };
 		431F9322268F180800F76A85 /* CustomAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F9321268F180800F76A85 /* CustomAddButton.swift */; };
 		431F9326268F209900F76A85 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F9325268F209900F76A85 /* UIColor + Extension.swift */; };
 		431F932D268F434300F76A85 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F932C268F434300F76A85 /* UIView + Extension.swift */; };
@@ -55,9 +56,10 @@
 		18232A60848D03BE2DE5963D /* Pods-PromoCode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromoCode.debug.xcconfig"; path = "Target Support Files/Pods-PromoCode/Pods-PromoCode.debug.xcconfig"; sourceTree = "<group>"; };
 		3C6FFA61D33A3170594815D9 /* Pods_PromoCode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PromoCode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4302609726919B3700BDDD0A /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
+		4302609B26919DE000BDDD0A /* SpheresCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpheresCollectionView.swift; sourceTree = "<group>"; };
+		4302609E26919E2000BDDD0A /* SpheresCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpheresCollectionViewCell.swift; sourceTree = "<group>"; };
 		43079E332685B2CD00866193 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		431F9319268EF2F200F76A85 /* PromocodeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeCollectionView.swift; sourceTree = "<group>"; };
-		431F931C268F0FD900F76A85 /* CustomSphereTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSphereTextField.swift; sourceTree = "<group>"; };
 		431F9321268F180800F76A85 /* CustomAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddButton.swift; sourceTree = "<group>"; };
 		431F9325268F209900F76A85 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		431F932C268F434300F76A85 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
@@ -195,9 +197,10 @@
 			children = (
 				432D91252685E0120079279E /* PromocodeCollectionViewCell.swift */,
 				431F9319268EF2F200F76A85 /* PromocodeCollectionView.swift */,
-				431F931C268F0FD900F76A85 /* CustomSphereTextField.swift */,
 				431F9321268F180800F76A85 /* CustomAddButton.swift */,
 				433110F426904217008DC02B /* PromocodeView.swift */,
+				4302609B26919DE000BDDD0A /* SpheresCollectionView.swift */,
+				4302609E26919E2000BDDD0A /* SpheresCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -385,7 +388,6 @@
 				431F9322268F180800F76A85 /* CustomAddButton.swift in Sources */,
 				432D91002685BF1F0079279E /* NetworkManager.swift in Sources */,
 				4396A1832684AEBB005623CF /* FavoritesRouter.swift in Sources */,
-				431F931D268F0FD900F76A85 /* CustomSphereTextField.swift in Sources */,
 				432D910E2685C30B0079279E /* FireBaseKeys.swift in Sources */,
 				4396A1922684AF71005623CF /* MainViewController.swift in Sources */,
 				43F6378B2684C0CE008D8363 /* PromoCode.swift in Sources */,
@@ -393,12 +395,14 @@
 				43F637992684C239008D8363 /* CustomTabBarInteractor.swift in Sources */,
 				43F637962684C239008D8363 /* CustomTabBarRouter.swift in Sources */,
 				433110F2269041C4008DC02B /* UIViewController + Extension.swift in Sources */,
+				4302609F26919E2000BDDD0A /* SpheresCollectionViewCell.swift in Sources */,
 				4396A1932684AF71005623CF /* MainProtocols.swift in Sources */,
 				4396A1872684AEBB005623CF /* FavoritesContainer.swift in Sources */,
 				4396A1822684AEBB005623CF /* FavoritesPresenter.swift in Sources */,
 				43F637972684C239008D8363 /* CustomTabBarViewController.swift in Sources */,
 				431F9326268F209900F76A85 /* UIColor + Extension.swift in Sources */,
 				432D91262685E0120079279E /* PromocodeCollectionViewCell.swift in Sources */,
+				4302609C26919DE000BDDD0A /* SpheresCollectionView.swift in Sources */,
 				432D911F2685D5590079279E /* FavPromoCode+CoreDataProperties.swift in Sources */,
 				4396A1842684AEBB005623CF /* FavoritesViewController.swift in Sources */,
 				431F932D268F434300F76A85 /* UIView + Extension.swift in Sources */,
