@@ -12,7 +12,8 @@ protocol CoreDataManagerDescription {
     func getPromoCodes(delegate: FavoritesViewInput?) -> [FavPromoCode]
     func getPromocode(byIndexPath indexPath: IndexPath) -> FavPromoCode
     func addPromoCode(promocode: PromoCode)
-    func deletePromoCode(promocode: PromoCode)
+    func delete(promocode: PromoCode)
+    func delete(promocode: FavPromoCode)
     func isInCoreDataBase(promocode: PromoCode) -> Bool
     func getNumberOfRowsInSection(_ section: Int) -> Int
     func getNumberOfSections() -> Int 
@@ -90,13 +91,23 @@ final class CoreDataManager: CoreDataManagerDescription {
     
     // MARK: - Delete
     
-    func deletePromoCode(promocode: PromoCode) {
+    func delete(promocode: PromoCode) {
         guard let context = context else { return }
         let newPromoCode = getPromocode(byId: promocode.id)
         guard let saveNewPromoCode = newPromoCode else {
             return
         }
         context.delete(saveNewPromoCode)
+        do {
+            try context.save()
+        } catch let err {
+            print(err.localizedDescription)
+        }
+    }
+    
+    func delete(promocode: FavPromoCode) {
+        guard let context = context else { return }
+        context.delete(promocode)
         do {
             try context.save()
         } catch let err {

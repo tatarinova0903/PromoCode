@@ -15,7 +15,6 @@ class PromocodeCollectionView: UICollectionView {
         super.init(frame: .zero, collectionViewLayout: layout)
         backgroundColor = .darkGray
         showsHorizontalScrollIndicator = false
-        register(PromocodeCollectionViewCell.self, forCellWithReuseIdentifier: PromocodeCollectionViewCell.description().description)
     }
     
     required init?(coder: NSCoder) {

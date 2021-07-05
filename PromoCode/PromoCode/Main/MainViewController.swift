@@ -123,6 +123,7 @@ final class MainViewController: UIViewController {
     // MARK: - Configures
     
     private func configureCollectionView() {
+        promocodeCollectionView.register(PromocodeCollectionViewCell.self, forCellWithReuseIdentifier: PromocodeCollectionViewCell.description().description)
         promocodeCollectionView.delegate = self
         promocodeCollectionView.dataSource = self
         spheresCollectionView.delegate = self
@@ -192,10 +193,6 @@ extension MainViewController: MainViewInput {
         promocodeCollectionView.reloadData()
     }
     
-    func addToFavoritesDidTapped(promocode: PromoCode) {
-        output.addToFavoritesDidTapped(promocode: promocode)
-    }
-    
     func changePromocodeCollectionCell(atIndex index: Int, with promocode: PromoCode) {
         guard let cell = promocodeCollectionView.cellForItem(at: IndexPath(row: index, section: 0)) as? PromocodeCollectionViewCell else {
             return
@@ -220,6 +217,13 @@ extension MainViewController: MainViewInput {
     func startActivityIndicator() {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
+    }
+}
+
+extension MainViewController: PromocodeViewCellOutput {
+    func addToFavoritesDidTap<T>(promocode: T) {
+        guard let promocode = promocode as? PromoCode else { return }
+        output.addToFavoritesDidTapped(promocode: promocode)
     }
 }
 

@@ -11,7 +11,7 @@ class PromocodeView: UIView {
     
     // MARK: - Properties
     
-    weak var delegate: MainViewInput?
+    weak var delegate: PromocodeViewCellOutput?
 
     private let serviceLabel: UILabel = {
         let label = UILabel()
@@ -115,7 +115,7 @@ class PromocodeView: UIView {
     @objc
     func addToFavoritesDidTapped() {
         promocode.isInFavorites.toggle()
-        delegate?.addToFavoritesDidTapped(promocode: promocode)
+        delegate?.addToFavoritesDidTap(promocode: promocode)
         addToFavorites.image = promocode.isInFavorites ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
         addToFavorites.tintColor = promocode.isInFavorites ? UIColor.darkPink : UIColor.gray
     }

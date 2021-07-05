@@ -62,7 +62,10 @@ extension MainPresenter: MainViewOutput {
     }
     
     func viewDidAppear() {
-        view?.changeSphereCollectionCell(atOldIndex: nil, atNewIndex: 0)
+        let currentSphereIndex = getIndex(for: currentSphere) ?? 0
+        if currentSphereIndex == 0 {
+            view?.changeSphereCollectionCell(atOldIndex: nil, atNewIndex: 0)
+        }
     }
     
     func getPromoCode(forIndex index: Int) -> PromoCode {

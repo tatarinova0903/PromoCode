@@ -1,21 +1,21 @@
 //
-//  PromoCodeTableViewCell.swift
+//  FavPromocodeCollectionViewCell.swift
 //  PromoCode
 //
-//  Created by Дарья on 25.06.2021.
+//  Created by Дарья on 05.07.2021.
 //
 
 import UIKit
 
-protocol PromocodeViewCellOutput: AnyObject {
-    func addToFavoritesDidTap(promocode: PromoCode)
+protocol FavPromocodeViewCellOutput: AnyObject {
+    func addToFavoritesDidTap(promocode: FavPromoCode)
 }
 
-final class PromocodeCollectionViewCell: UICollectionViewCell {
+final class FavPromocodeCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    weak var delegate: PromocodeViewCellOutput?
+    weak var delegate: FavPromocodeViewCellOutput?
     
     private let serviceLabel: UILabel = {
         let label = UILabel()
@@ -42,7 +42,7 @@ final class PromocodeCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private var promocode = PromoCode()
+    private var promocode = FavPromoCode()
     
     // MARK: - Init
     
@@ -85,7 +85,7 @@ final class PromocodeCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        promocode = PromoCode()
+        promocode = FavPromoCode()
         serviceLabel.text = nil
         addToFavorites.image = UIImage(systemName: "heart")
         addToFavorites.tintColor = UIColor.gray
@@ -101,22 +101,19 @@ final class PromocodeCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
     }
     
-    func configureCell(with promocode: PromoCode) {
+    func configureCell(with promocode: FavPromoCode) {
         self.promocode = promocode
         serviceLabel.text = promocode.service
         promocodeLabel.text = promocode.promocode
-        addToFavorites.image = promocode.isInFavorites ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
-        addToFavorites.tintColor = promocode.isInFavorites ? UIColor.darkPink : UIColor.gray
+        addToFavorites.image = UIImage(systemName: "heart.fill")
+        addToFavorites.tintColor = UIColor.darkPink
     }
     
     // MARK: - Handlers
     
     @objc
     func addToFavoritesDidTapped() {
-        promocode.isInFavorites.toggle()
         delegate?.addToFavoritesDidTap(promocode: promocode)
-        addToFavorites.image = promocode.isInFavorites ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
-        addToFavorites.tintColor = promocode.isInFavorites ? UIColor.darkPink : UIColor.gray
     }
-    
 }
+

@@ -18,8 +18,6 @@ protocol MainModuleOutput: AnyObject {
 protocol MainViewInput: AnyObject {
     func reloadData()
     
-    func addToFavoritesDidTapped(promocode: PromoCode)
-    
     func changePromocodeCollectionCell(atIndex index: Int, with promocode: PromoCode)
     func changeSphereCollectionCell(atOldIndex oldIndex: Int?, atNewIndex newIndex: Int)
     

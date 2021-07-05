@@ -62,7 +62,7 @@ extension MainInteractor: MainInteractorInput {
             return
         }
         data[safeIndex].isInFavorites = promocode.isInFavorites
-        coreDataManager.deletePromoCode(promocode: promocode)
+        coreDataManager.delete(promocode: promocode)
     }
     
     func getIndex(for promocode: PromoCode) -> Int? {

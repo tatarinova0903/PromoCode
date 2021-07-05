@@ -47,6 +47,10 @@ extension FavoritesPresenter: FavoritesViewOutput {
     func getNumberOfRowsInSection(_ section: Int) -> Int {
         interactor.getNumberOfRowsInSection(section)
     }
+    
+    func delete(promocode: FavPromoCode) {
+        interactor.delete(promocode: promocode)
+    }
 }
 
 extension FavoritesPresenter: FavoritesInteractorOutput {

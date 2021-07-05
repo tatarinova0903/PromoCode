@@ -16,8 +16,17 @@ final class FavoritesViewController: UIViewController {
     
 	private let output: FavoritesViewOutput
     
-    private let tableView = UITableView()
-    private let addButton = UIButton()
+    private var promocodeCollectionView: PromocodeCollectionView = {
+        let collectionView = PromocodeCollectionView()
+        return collectionView
+    }()
+    
+    private struct LayersConstants {
+        static let screenWidth = UIScreen.main.bounds.width
+        static let textFieldInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        static let horisontalPadding: CGFloat = 10
+        static let spheresCollectionViewHeight: CGFloat = UIScreen.main.bounds.height / 15
+    }
 
     // MARK: - Init
 
@@ -37,101 +46,98 @@ final class FavoritesViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
         title = "Избранное"
+        view.backgroundColor = .darkGray
         output.viewDidLoad()
-        view.addSubview(tableView)
-        view.addSubview(addButton)
+        view.addSubview(promocodeCollectionView)
         configureTableView()
-        configureAddButton()
 	}
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.pin
-            .top()
-            .left()
-            .right()
-            .bottom(200)
-        addButton.pin
-            .below(of: tableView, aligned: .center)
-            .size(CGSize(width: 200, height: 50))
+        promocodeCollectionView.pin
+            .all(LayersConstants.horisontalPadding)
     }
     
     // MARK: - Configures
 
     private func configureTableView() {
-        tableView.backgroundColor = .white
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    
-    private func configureAddButton() {
-        addButton.backgroundColor = .blue
-        addButton.setTitle("Add", for: .normal)
-        addButton.addTarget(self, action: #selector(addButtonDidTaped), for: .touchUpInside)
+        promocodeCollectionView.register(FavPromocodeCollectionViewCell.self, forCellWithReuseIdentifier: FavPromocodeCollectionViewCell.description().description)
+        promocodeCollectionView.delegate = self
+        promocodeCollectionView.dataSource = self
     }
     
     // MARK: - Handlers
     
-    @objc
-    private func addButtonDidTaped() {
-        CoreDataManager.shared.addPromoCode(promocode: PromoCode(id: "ID", service: "OKKO", promocode: "&^GHU", description: "", date: Date()))
-        tableView.reloadData()
-    }
 }
 
 // MARK: - Extensions
 
-extension FavoritesViewController: UITableViewDataSource {
+extension FavoritesViewController: UICollectionViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         output.getNumberOfSections()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         output.getNumberOfRowsInSection(section)
     }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        let promoCode = output.getPromoCode(forIndexPath: indexPath)
-        cell.textLabel?.text = "\(promoCode.service) + \(promoCode.id)"
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavPromocodeCollectionViewCell.description(), for: indexPath) as? FavPromocodeCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.delegate = self
+        let favpromocode = output.getPromoCode(forIndexPath: indexPath)
+        cell.configureCell(with: favpromocode)
         return cell
     }
 }
 
-extension FavoritesViewController: UITableViewDelegate {
-    
+extension FavoritesViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width / 2 - LayersConstants.horisontalPadding * 2, height: view.frame.height / 8)
+    }
 }
 
+extension FavoritesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        cell.alpha = 0
+        UIView.animate(withDuration: 1) {
+            cell.alpha = 1.0
+        }
+    }
+}
 extension FavoritesViewController: FavoritesViewInput {
     func reloadData() {
-        tableView.reloadData()
+        promocodeCollectionView.reloadData()
+    }
+}
+
+extension FavoritesViewController: FavPromocodeViewCellOutput {
+    func addToFavoritesDidTap(promocode: FavPromoCode) {
+        output.delete(promocode: promocode)
     }
 }
 
 extension FavoritesViewController: NSFetchedResultsControllerDelegate {
-    
-//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tableView.beginUpdates()
-//    }
-//
+
 //    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
 //        switch type {
 //        case .insert:
 //            if let newIndexPath_ = newIndexPath {
-//                tableView.insertRows(at: [newIndexPath_], with: .fade)
+//                promocodeCollectionView.reloadItems(at: [newIndexPath_])
 //            }
 //        case .delete:
 //            if let newIndexPath_ = newIndexPath {
-//                tableView.deleteRows(at: [newIndexPath_], with: .fade)
+//                promocodeCollectionView.reloadItems(at: [newIndexPath_])
 //            }
 //        case .update:
 //            if let newIndexPath_ = newIndexPath {
-//                tableView.reloadRows(at: [newIndexPath_], with: .fade)
-//            }
-//        case .move:
-//            if let oldIndexPath = indexPath, let newIndexPath_ = newIndexPath {
-//                tableView.moveRow(at: oldIndexPath, to: newIndexPath_)
+//                promocodeCollectionView.reloadItems(at: [newIndexPath_])
 //            }
 //        default:
 //            break
@@ -139,8 +145,7 @@ extension FavoritesViewController: NSFetchedResultsControllerDelegate {
 //    }
      
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tableView.endUpdates()
-        tableView.reloadData()
+        promocodeCollectionView.reloadData()
     }
 }
 

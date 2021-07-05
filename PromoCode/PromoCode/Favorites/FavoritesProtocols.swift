@@ -22,9 +22,12 @@ protocol FavoritesViewInput: class, NSFetchedResultsControllerDelegate {
 
 protocol FavoritesViewOutput: class {
     func viewDidLoad()
+    
     func getNumberOfRowsInSection(_ section: Int) -> Int
     func getNumberOfSections() -> Int
     func getPromoCode(forIndexPath indexPath: IndexPath) -> FavPromoCode
+    
+    func delete(promocode: FavPromoCode)
 }
 
 protocol FavoritesInteractorInput: class {
@@ -32,6 +35,7 @@ protocol FavoritesInteractorInput: class {
     func getNumberOfRowsInSection(_ section: Int) -> Int
     func getNumberOfSections() -> Int
     func getPromoCode(forIndexPath indexPath: IndexPath) -> FavPromoCode
+    func delete(promocode: FavPromoCode)
 }
 
 protocol FavoritesInteractorOutput: class {

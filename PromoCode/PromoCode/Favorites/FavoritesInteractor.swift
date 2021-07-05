@@ -21,6 +21,7 @@ final class FavoritesInteractor {
 }
 
 extension FavoritesInteractor: FavoritesInteractorInput {
+    
     func getNumberOfRowsInSection(_ section: Int) -> Int {
         coreDataManager.getNumberOfRowsInSection(section)
     }
@@ -29,7 +30,6 @@ extension FavoritesInteractor: FavoritesInteractorInput {
         coreDataManager.getNumberOfSections()
     }
     
-    
     func getAllPromocodes(delegate: FavoritesViewInput?) {
         data = coreDataManager.getPromoCodes(delegate: delegate)
     }
@@ -37,5 +37,8 @@ extension FavoritesInteractor: FavoritesInteractorInput {
     func getPromoCode(forIndexPath indexPath: IndexPath) -> FavPromoCode {
         coreDataManager.getPromocode(byIndexPath: indexPath)
     }
-
+    
+    func delete(promocode: FavPromoCode) {
+        coreDataManager.delete(promocode: promocode)
+    }
 }
