@@ -43,6 +43,8 @@ protocol MainViewOutput: AnyObject {
     func getSphere(forIndex index: Int) -> Spheres
     func getSphereCellLength(forIndex index: Int) -> CGFloat
     
+    func addPromocodeButtonDidTapped()
+    
 }
 
 protocol MainInteractorInput: AnyObject {
@@ -60,4 +62,5 @@ protocol MainInteractorOutput: AnyObject {
 }
 
 protocol MainRouterInput: AnyObject {
+    func showAddPromocodeController()
 }

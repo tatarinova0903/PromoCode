@@ -131,7 +131,7 @@ final class MainViewController: UIViewController {
     }
     
     private func configureAddButton() {
-        addButton.addTarget(self, action: #selector(addButtonDidTapped), for: .touchUpInside)
+        addButton.addTarget(self, action: #selector(addPromocodeButtonDidTapped), for: .touchUpInside)
     }
     
     private func configureGradient() {
@@ -181,8 +181,8 @@ final class MainViewController: UIViewController {
     }
     
     @objc
-    private func addButtonDidTapped() {
-        print(#function)
+    private func addPromocodeButtonDidTapped() {
+        output.addPromocodeButtonDidTapped()
     }
 }
 

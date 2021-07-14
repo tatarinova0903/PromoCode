@@ -101,6 +101,10 @@ extension MainPresenter: MainViewOutput {
             interactor.deleteFromFavorites(promocode: promocode)
         }
     }
+    
+    func addPromocodeButtonDidTapped() {
+        router.showAddPromocodeController()
+    }
 }
 
 extension MainPresenter: MainInteractorOutput {

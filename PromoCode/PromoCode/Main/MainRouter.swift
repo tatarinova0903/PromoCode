@@ -9,7 +9,13 @@
 import UIKit
 
 final class MainRouter {
+    weak var sourceViewController: UIViewController?
 }
 
 extension MainRouter: MainRouterInput {
+    
+    func showAddPromocodeController() {
+        let addPromocodeContainer = AddPromocodeContainer.assemble()
+        sourceViewController?.present(addPromocodeContainer.viewController, animated: true, completion: nil)
+    }
 }
