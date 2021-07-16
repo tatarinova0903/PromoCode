@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomTextField: UITextField {
+final class CustomTextField: UITextField {
     
     // MARK: - Properties
     
@@ -18,7 +18,7 @@ class CustomTextField: UITextField {
     init(insets: UIEdgeInsets) {
         self.insets = insets
         super.init(frame: .zero)
-        attributedPlaceholder = NSAttributedString(string: "placeholder text", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        attributedPlaceholder = NSAttributedString(string: "placeholder text", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     }
     
     required init?(coder: NSCoder) {
@@ -28,9 +28,10 @@ class CustomTextField: UITextField {
     // MARK: - Override functions
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         backgroundColor = .white
         textColor = .darkGray
-        layer.cornerRadius = 10
+        layer.cornerRadius = 15
         layer.borderWidth = 2
         layer.borderColor = UIColor.mediumGray.cgColor
     }

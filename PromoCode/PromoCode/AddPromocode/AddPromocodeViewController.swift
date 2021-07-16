@@ -87,6 +87,7 @@ class AddPromocodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        dismissKeyboard()
         view.backgroundColor = .darkGray
         
         view.addSubview(whiteCard)
@@ -151,7 +152,6 @@ class AddPromocodeViewController: UIViewController {
     
     private func configureCornerRadius() {
         addButton.makeRound()
-        promocodeTextField.placeholder = "PromoCode"
     }
     
     private func configureGradient() {
