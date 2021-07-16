@@ -48,6 +48,7 @@ protocol MainViewOutput: AnyObject {
 }
 
 protocol MainInteractorInput: AnyObject {
+    func getAllPromocodes()
     func getPromocodes(for sphere: Spheres)
     func getPromocodesCount() -> Int
     func getPromoCode(forIndex index: Int) -> PromoCode

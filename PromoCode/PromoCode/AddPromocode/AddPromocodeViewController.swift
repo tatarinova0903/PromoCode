@@ -60,6 +60,12 @@ class AddPromocodeViewController: UIViewController {
         return view
     }()
     
+    private let spheresContainer: SpheresContainer = {
+        let view = SpheresContainer()
+        return view
+    }()
+    
+    
     private struct LayerConstants {
         static let horizontalPadding: CGFloat = 10
         static let textFieldsSpacing: CGFloat = 30
@@ -84,8 +90,10 @@ class AddPromocodeViewController: UIViewController {
         view.backgroundColor = .darkGray
         
         view.addSubview(whiteCard)
-        [textFieldsContainer, addButton].forEach({ whiteCard.addSubview($0) })
+        [textFieldsContainer, spheresContainer, addButton].forEach({ whiteCard.addSubview($0) })
         [serviceTextField, promocodeTextField, descriptionTextField, dateTextField].forEach({ textFieldsContainer.addSubview($0) })
+        
+        addButton.addTarget(self, action: #selector(addButtonDidTapped), for: .touchUpInside)
     }
     
     override func viewWillLayoutSubviews() {
@@ -95,13 +103,19 @@ class AddPromocodeViewController: UIViewController {
             .vertically(80)
         
         addButton.pin
-            .bottomRight()
-            .size(CGSize(width: 50, height: 50))
+            .bottomRight(10)
+            .size(CGSize(width: 60, height: 60))
         
         textFieldsContainer.pin
-            .above(of: addButton)
             .horizontally()
-            .top()
+            .top(10)
+            .height(round(whiteCard.frame.height * 0.6))
+        
+        spheresContainer.pin
+            .above(of: addButton)
+            .below(of: textFieldsContainer)
+            .marginTop(10)
+            .horizontally()
         
         serviceTextField.pin
             .top(LayerConstants.textFieldsSpacing)
@@ -130,12 +144,28 @@ class AddPromocodeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configureCornerRadius()
+        configureGradient()
     }
     
     // MARK: - Configures
     
     private func configureCornerRadius() {
         addButton.makeRound()
+        promocodeTextField.placeholder = "PromoCode"
+    }
+    
+    private func configureGradient() {
+        addButton.gradientlayer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        let endY = 0.5 + addButton.frame.size.width / addButton.frame.size.height / 2
+        addButton.gradientlayer.endPoint = CGPoint(x: 1, y: endY)
+        addButton.layer.sublayers?.forEach({ $0.cornerRadius = addButton.bounds.width / 2 })
+    }
+    
+    // MARK: - Handlers
+    
+    @objc
+    func addButtonDidTapped() {
+        output.addButtonDidTapped(service: serviceTextField.text, promocode: promocodeTextField.text, description: descriptionTextField.text, date: dateTextField.text, sphere: Spheres.allCases[spheresContainer.selectedSphereTag])
     }
 }
 

@@ -10,6 +10,7 @@ import FirebaseFirestore
 
 protocol NetworkManagerDescription {
     func getPromocodes(for sphere: Spheres, completion: @escaping (Result<[PromoCode], СustomError>) -> Void)
+    func addPromocode(promocode: PromoCode, sphere: Spheres)
 }
 
 
@@ -22,6 +23,8 @@ final class NetworkManager: NetworkManagerDescription {
     private let coreDataManager: CoreDataManagerDescription = CoreDataManager.shared
     
     private init() { }
+    
+    // MARK: - Get
     
     func getPromocodes(for sphere: Spheres, completion: @escaping (Result<[PromoCode], СustomError>) -> Void) {
         database.collection(sphere.rawValue).getDocuments { [weak self] (querySnapshot, error) in
@@ -44,6 +47,13 @@ final class NetworkManager: NetworkManagerDescription {
             }
             completion(.success(promocodes))
         }
+    }
+    
+    //MARK: - Add
+    
+    func addPromocode(promocode: PromoCode, sphere: Spheres) {
+        print(promocode)
+        print(sphere)
     }
 }
 

@@ -24,6 +24,25 @@ final class MainInteractor {
 
 extension MainInteractor: MainInteractorInput {
     
+    func getAllPromocodes() {
+        data.removeAll()
+        output?.cleanView()
+        for sphere in Spheres.allCases {
+            networkManager.getPromocodes(for: sphere) { [weak self] (res) in
+                guard let self = self else { return }
+                switch res {
+                case .success(let promocodes):
+                    self.data.append(contentsOf: promocodes)
+                    if sphere == Spheres.allCases.last {
+                        self.output?.promocodesDidLoad()
+                    }
+                case .failure(let err):
+                    print(err.rawValue)
+                }
+            }
+        }
+    }
+    
     func getPromocodes(for sphere: Spheres) {
         data.removeAll()
         output?.cleanView()

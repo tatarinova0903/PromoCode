@@ -12,12 +12,11 @@ final class AddPromocodeContainer {
     let viewController: UIViewController
 
     class func assemble() -> AddPromocodeContainer {
-        let presenter = AddPromocodePresenter()
+        let model = AddPromocodeModel()
+        let presenter = AddPromocodePresenter(model: model)
         let viewController = AddPromocodeViewController(output: presenter)
 
         presenter.view = viewController
-
-//        model.output = presenter
 
         return AddPromocodeContainer(view: viewController, input: presenter)
     }

@@ -8,6 +8,7 @@
 import Foundation
 
 enum Spheres: String, CaseIterable {
+    case all
     case films
     case food
     case clothes
@@ -17,6 +18,8 @@ enum Spheres: String, CaseIterable {
     
     func inRussian() -> String {
         switch self {
+        case .all:
+            return "Все"
         case .films:
             return "Фильмы"
         case .food:

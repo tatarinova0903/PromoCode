@@ -18,7 +18,7 @@ final class MainPresenter {
 	private let router: MainRouterInput
 	private let interactor: MainInteractorInput
     
-    private var sphere: Spheres = .films
+    private var sphere: Spheres = .all
 
     // MARK: - Init
     
@@ -31,7 +31,11 @@ final class MainPresenter {
     
     func getPromocodes(for sphere: Spheres) {
         view?.startActivityIndicator()
-        interactor.getPromocodes(for: sphere)
+        if sphere == .all {
+            interactor.getAllPromocodes()
+        } else {
+            interactor.getPromocodes(for: sphere)
+        }
     }
     
     func getIndex(for sphere: Spheres) -> Int? {
@@ -58,7 +62,7 @@ extension MainPresenter: MainViewOutput {
     }
     
     func viewDidLoad() {
-        currentSphere = .films
+        currentSphere = .all
     }
     
     func viewDidAppear() {

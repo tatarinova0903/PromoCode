@@ -11,6 +11,8 @@
 		4302609C26919DE000BDDD0A /* SpheresCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4302609B26919DE000BDDD0A /* SpheresCollectionView.swift */; };
 		4302609F26919E2000BDDD0A /* SpheresCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4302609E26919E2000BDDD0A /* SpheresCollectionViewCell.swift */; };
 		43079E342685B2CD00866193 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43079E332685B2CD00866193 /* GoogleService-Info.plist */; };
+		431F5E9526A16EB20060E33F /* AddPromocodeModelInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F5E9426A16EB20060E33F /* AddPromocodeModelInput.swift */; };
+		431F5E9826A170280060E33F /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F5E9726A170280060E33F /* String + Extension.swift */; };
 		431F931A268EF2F200F76A85 /* PromocodeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F9319268EF2F200F76A85 /* PromocodeCollectionView.swift */; };
 		431F9322268F180800F76A85 /* CustomAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F9321268F180800F76A85 /* CustomAddButton.swift */; };
 		431F9326268F209900F76A85 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F9325268F209900F76A85 /* UIColor + Extension.swift */; };
@@ -42,6 +44,7 @@
 		4396A1932684AF71005623CF /* MainProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A18D2684AF71005623CF /* MainProtocols.swift */; };
 		4396A1942684AF71005623CF /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A18E2684AF71005623CF /* MainInteractor.swift */; };
 		4396A1952684AF71005623CF /* MainContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A18F2684AF71005623CF /* MainContainer.swift */; };
+		43AA4BDE26A04863000FD36A /* SpheresContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AA4BDD26A04863000FD36A /* SpheresContainer.swift */; };
 		43BAE3CB269ECA5A00FCE4D1 /* AddPromocodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BAE3CA269ECA5A00FCE4D1 /* AddPromocodeViewController.swift */; };
 		43BAE3CF269ECA7E00FCE4D1 /* AddPromocodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BAE3CE269ECA7E00FCE4D1 /* AddPromocodePresenter.swift */; };
 		43BAE3D2269ECAA500FCE4D1 /* AddPromocodeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BAE3D1269ECAA500FCE4D1 /* AddPromocodeProtocols.swift */; };
@@ -65,6 +68,8 @@
 		4302609B26919DE000BDDD0A /* SpheresCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpheresCollectionView.swift; sourceTree = "<group>"; };
 		4302609E26919E2000BDDD0A /* SpheresCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpheresCollectionViewCell.swift; sourceTree = "<group>"; };
 		43079E332685B2CD00866193 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		431F5E9426A16EB20060E33F /* AddPromocodeModelInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPromocodeModelInput.swift; sourceTree = "<group>"; };
+		431F5E9726A170280060E33F /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		431F9319268EF2F200F76A85 /* PromocodeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeCollectionView.swift; sourceTree = "<group>"; };
 		431F9321268F180800F76A85 /* CustomAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddButton.swift; sourceTree = "<group>"; };
 		431F9325268F209900F76A85 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
@@ -98,6 +103,7 @@
 		4396A18D2684AF71005623CF /* MainProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProtocols.swift; sourceTree = "<group>"; };
 		4396A18E2684AF71005623CF /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
 		4396A18F2684AF71005623CF /* MainContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainer.swift; sourceTree = "<group>"; };
+		43AA4BDD26A04863000FD36A /* SpheresContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpheresContainer.swift; sourceTree = "<group>"; };
 		43BAE3CA269ECA5A00FCE4D1 /* AddPromocodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPromocodeViewController.swift; sourceTree = "<group>"; };
 		43BAE3CE269ECA7E00FCE4D1 /* AddPromocodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPromocodePresenter.swift; sourceTree = "<group>"; };
 		43BAE3D1269ECAA500FCE4D1 /* AddPromocodeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPromocodeProtocols.swift; sourceTree = "<group>"; };
@@ -133,6 +139,7 @@
 				431F932C268F434300F76A85 /* UIView + Extension.swift */,
 				433110F1269041C4008DC02B /* UIViewController + Extension.swift */,
 				4302609726919B3700BDDD0A /* Date + Extension.swift */,
+				431F5E9726A170280060E33F /* String + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -216,6 +223,7 @@
 				4302609E26919E2000BDDD0A /* SpheresCollectionViewCell.swift */,
 				43E2FC99269323D1007AC967 /* FavPromocodeCollectionViewCell.swift */,
 				43BAE3D7269ED91300FCE4D1 /* CustomTextField.swift */,
+				43AA4BDD26A04863000FD36A /* SpheresContainer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -253,6 +261,7 @@
 				43BAE3CE269ECA7E00FCE4D1 /* AddPromocodePresenter.swift */,
 				43BAE3D1269ECAA500FCE4D1 /* AddPromocodeProtocols.swift */,
 				43BAE3D4269ECCA300FCE4D1 /* AddGroupContainer.swift */,
+				431F5E9426A16EB20060E33F /* AddPromocodeModelInput.swift */,
 			);
 			path = AddPromocode;
 			sourceTree = "<group>";
@@ -413,9 +422,11 @@
 			files = (
 				431F9322268F180800F76A85 /* CustomAddButton.swift in Sources */,
 				432D91002685BF1F0079279E /* NetworkManager.swift in Sources */,
+				431F5E9826A170280060E33F /* String + Extension.swift in Sources */,
 				4396A1832684AEBB005623CF /* FavoritesRouter.swift in Sources */,
 				432D910E2685C30B0079279E /* FireBaseKeys.swift in Sources */,
 				4396A1922684AF71005623CF /* MainViewController.swift in Sources */,
+				431F5E9526A16EB20060E33F /* AddPromocodeModelInput.swift in Sources */,
 				43F6378B2684C0CE008D8363 /* PromoCode.swift in Sources */,
 				432D910A2685C1F60079279E /* Converter.swift in Sources */,
 				43F637992684C239008D8363 /* CustomTabBarInteractor.swift in Sources */,
@@ -435,6 +446,7 @@
 				43BAE3CF269ECA7E00FCE4D1 /* AddPromocodePresenter.swift in Sources */,
 				4396A1842684AEBB005623CF /* FavoritesViewController.swift in Sources */,
 				431F932D268F434300F76A85 /* UIView + Extension.swift in Sources */,
+				43AA4BDE26A04863000FD36A /* SpheresContainer.swift in Sources */,
 				4396A1952684AF71005623CF /* MainContainer.swift in Sources */,
 				431F931A268EF2F200F76A85 /* PromocodeCollectionView.swift in Sources */,
 				43F637982684C239008D8363 /* CustomTabBarProtocols.swift in Sources */,

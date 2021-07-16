@@ -34,8 +34,12 @@ final class MainViewController: UIViewController {
         return collectionView
     }()
     
-    private let addButton = CustomAddButton()
-    
+    private let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "What are you looking for?"
+        return searchBar
+    }()
+        
     private let promocodeView: PromocodeView = {
         let promocodeView = PromocodeView()
         promocodeView.layer.cornerRadius = 20
@@ -55,7 +59,7 @@ final class MainViewController: UIViewController {
         static let screenWidth = UIScreen.main.bounds.width
         static let textFieldInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         static let horisontalPadding: CGFloat = 10
-        static let spheresCollectionViewHeight: CGFloat = UIScreen.main.bounds.height / 15
+        static let spheresCollectionViewHeight: CGFloat = round(UIScreen.main.bounds.height / 15)
     }
     
     private var isPromocodeViewHidden = true
@@ -77,24 +81,25 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewDidLoad()
-        title = "Главная"
+        configureNavigationBar()
         view.backgroundColor = .darkGray
-        [promocodeCollectionView, spheresCollectionView, activityIndicator, addButton, blurBackgroundView, promocodeView].forEach{ view.addSubview($0) }
-        configureAddButton()
+        [searchBar, promocodeCollectionView, spheresCollectionView, activityIndicator, blurBackgroundView, promocodeView].forEach{ view.addSubview($0) }
         configureCollectionView()
         promocodeView.delegate = self
+        searchBar.delegate = self
+        searchBar.barTintColor = .darkGray
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        addButton.pin
+        searchBar.pin
             .top(view.pin.safeArea.top + 10)
-            .right(LayersConstants.horisontalPadding)
-            .size(CGSize(width: LayersConstants.spheresCollectionViewHeight, height: LayersConstants.spheresCollectionViewHeight))
+            .horizontally(LayersConstants.horisontalPadding)
+            .height(LayersConstants.spheresCollectionViewHeight)
         spheresCollectionView.pin
-            .before(of: addButton, aligned: .center)
-            .left()
-            .margin(LayersConstants.horisontalPadding)
+            .below(of: searchBar)
+            .marginTop(5)
+            .horizontally(LayersConstants.horisontalPadding)
             .height(LayersConstants.spheresCollectionViewHeight)
         promocodeCollectionView.pin
             .below(of: spheresCollectionView)
@@ -111,7 +116,6 @@ final class MainViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        configureGradient()
         configureBlur()
     }
     
@@ -122,23 +126,18 @@ final class MainViewController: UIViewController {
     
     // MARK: - Configures
     
+    private func configureNavigationBar() {
+        title = "Главная"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Добавить", style: .plain, target: self, action: #selector(addPromocodeButtonDidTapped))
+        navigationItem.rightBarButtonItem?.tintColor = .darkPink
+    }
+    
     private func configureCollectionView() {
         promocodeCollectionView.register(PromocodeCollectionViewCell.self, forCellWithReuseIdentifier: PromocodeCollectionViewCell.description().description)
         promocodeCollectionView.delegate = self
         promocodeCollectionView.dataSource = self
         spheresCollectionView.delegate = self
         spheresCollectionView.dataSource = self
-    }
-    
-    private func configureAddButton() {
-        addButton.addTarget(self, action: #selector(addPromocodeButtonDidTapped), for: .touchUpInside)
-    }
-    
-    private func configureGradient() {
-        addButton.gradientlayer.startPoint = CGPoint(x: 0.5, y: 0.5)
-        let endY = 0.5 + addButton.frame.size.width / addButton.frame.size.height / 2
-        addButton.gradientlayer.endPoint = CGPoint(x: 1, y: endY)
-        addButton.layer.sublayers?.forEach({ $0.cornerRadius = addButton.bounds.width / 2 })
     }
   
     private func configureBlur() {
@@ -281,5 +280,13 @@ extension MainViewController: UICollectionViewDelegate {
         UIView.animate(withDuration: 1) {
             cell.alpha = 1.0
         }
+    }
+}
+
+extension MainViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        guard let _ = searchBar.text else { return }
+        // TODO: сам поиск
     }
 }

@@ -18,7 +18,7 @@ class CustomTextField: UITextField {
     init(insets: UIEdgeInsets) {
         self.insets = insets
         super.init(frame: .zero)
-        attributedPlaceholder = NSAttributedString(string: "placeholder text", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        attributedPlaceholder = NSAttributedString(string: "placeholder text", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
     }
     
     required init?(coder: NSCoder) {
