@@ -8,8 +8,11 @@
 
 import UIKit
 
-protocol MainModuleInput {
-	var moduleOutput: MainModuleOutput? { get }
+protocol MainModuleInput: AnyObject {
+    
+    func getCurrentShownSphere() -> Spheres
+    
+    func promocodeDidAdd(promocode: PromoCode)
 }
 
 protocol MainModuleOutput: AnyObject {
@@ -17,6 +20,7 @@ protocol MainModuleOutput: AnyObject {
 
 protocol MainViewInput: AnyObject {
     func reloadData()
+    func reloadData(at index: Int)
     
     func changePromocodeCollectionCell(atIndex index: Int, with promocode: PromoCode)
     func changeSphereCollectionCell(atOldIndex oldIndex: Int?, atNewIndex newIndex: Int)
@@ -48,6 +52,7 @@ protocol MainViewOutput: AnyObject {
 }
 
 protocol MainInteractorInput: AnyObject {
+    func addPromocode(promocode: PromoCode) -> Int
     func getAllPromocodes()
     func getPromocodes(for sphere: Spheres)
     func getPromocodesCount() -> Int
@@ -63,5 +68,5 @@ protocol MainInteractorOutput: AnyObject {
 }
 
 protocol MainRouterInput: AnyObject {
-    func showAddPromocodeController()
+    func showAddPromocodeController(moduleOutput: MainModuleInput)
 }

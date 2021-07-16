@@ -11,12 +11,13 @@ final class AddPromocodeContainer {
     let input: AddGroupModuleInput
     let viewController: UIViewController
 
-    class func assemble() -> AddPromocodeContainer {
+    class func assemble(with moduleOutput: MainModuleInput) -> AddPromocodeContainer {
         let model = AddPromocodeModel()
         let presenter = AddPromocodePresenter(model: model)
         let viewController = AddPromocodeViewController(output: presenter)
 
         presenter.view = viewController
+        presenter.moduleOutput = moduleOutput
 
         return AddPromocodeContainer(view: viewController, input: presenter)
     }

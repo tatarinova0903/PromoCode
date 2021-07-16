@@ -12,7 +12,14 @@ final class AddPromocodeModel {
 }
 
 extension AddPromocodeModel: AddPromocodeModelInput {
-    func addPromocode(promocode: PromoCode, sphere: Spheres) {
-        networkManager.addPromocode(promocode: promocode, sphere: sphere)
+    func addPromocode(promocode: PromoCode, sphere: Spheres, completion: @escaping (Result<PromoCode, СustomError>) -> Void) {
+        networkManager.addPromocode(promocode: promocode, sphere: sphere) { res in
+            switch res {
+            case .success(let promocode):
+                completion(.success(promocode))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }

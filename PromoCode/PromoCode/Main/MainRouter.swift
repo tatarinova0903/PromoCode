@@ -14,8 +14,8 @@ final class MainRouter {
 
 extension MainRouter: MainRouterInput {
     
-    func showAddPromocodeController() {
-        let addPromocodeContainer = AddPromocodeContainer.assemble()
+    func showAddPromocodeController(moduleOutput: MainModuleInput) {
+        let addPromocodeContainer = AddPromocodeContainer.assemble(with: moduleOutput)
         sourceViewController?.present(addPromocodeContainer.viewController, animated: true, completion: nil)
     }
 }

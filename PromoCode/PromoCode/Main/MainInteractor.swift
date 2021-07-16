@@ -88,4 +88,9 @@ extension MainInteractor: MainInteractorInput {
         return data.firstIndex { $0.id == promocode.id }
     }
     
+    func addPromocode(promocode: PromoCode) -> Int {
+        data.insert(promocode, at: 0)
+        return 0
+    }
+    
 }

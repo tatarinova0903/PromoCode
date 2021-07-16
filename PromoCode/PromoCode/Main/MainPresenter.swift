@@ -46,6 +46,16 @@ final class MainPresenter {
 // MARK: - Extensions
 
 extension MainPresenter: MainModuleInput {
+    
+    func getCurrentShownSphere() -> Spheres {
+        currentSphere
+    }
+    
+    func promocodeDidAdd(promocode: PromoCode) {
+        let newPromocodeIndex = interactor.addPromocode(promocode: promocode)
+        view?.reloadData(at: newPromocodeIndex)
+    }
+    
 }
 
 extension MainPresenter: MainViewOutput {
@@ -107,7 +117,7 @@ extension MainPresenter: MainViewOutput {
     }
     
     func addPromocodeButtonDidTapped() {
-        router.showAddPromocodeController()
+        router.showAddPromocodeController(moduleOutput: self)
     }
 }
 

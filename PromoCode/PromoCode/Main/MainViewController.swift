@@ -188,6 +188,10 @@ final class MainViewController: UIViewController {
 // MARK: - Extensions
 
 extension MainViewController: MainViewInput {
+    func reloadData(at index: Int) {
+        promocodeCollectionView.insertItems(at: [IndexPath(row: index, section: 0)])
+    }
+    
     func reloadData() {
         promocodeCollectionView.reloadData()
     }

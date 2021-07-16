@@ -10,7 +10,7 @@ import FirebaseFirestore
 
 protocol NetworkManagerDescription {
     func getPromocodes(for sphere: Spheres, completion: @escaping (Result<[PromoCode], СustomError>) -> Void)
-    func addPromocode(promocode: PromoCode, sphere: Spheres)
+    func addPromocode(promocode: PromoCode, sphere: Spheres, completion: @escaping (Result<PromoCode, СustomError>) -> Void)
 }
 
 
@@ -51,9 +51,21 @@ final class NetworkManager: NetworkManagerDescription {
     
     //MARK: - Add
     
-    func addPromocode(promocode: PromoCode, sphere: Spheres) {
-        print(promocode)
-        print(sphere)
+    func addPromocode(promocode: PromoCode, sphere: Spheres, completion: @escaping (Result<PromoCode, СustomError>) -> Void) {
+        let ref = database.collection(sphere.rawValue).document()
+        let docId = ref.documentID
+        
+        ref.setData([PromoCodeKey.id.rawValue : docId,
+                     PromoCodeKey.service.rawValue : promocode.service,
+                     PromoCodeKey.description.rawValue : promocode.description,
+                     PromoCodeKey.promocode.rawValue : promocode.promocode,
+                     PromoCodeKey.date.rawValue : Timestamp(date: promocode.date)]) { (error) in
+            if error != nil {
+                completion(.failure(СustomError.failedToAddPromocode))
+            } else {
+                completion(.success(promocode))
+            }
+        }
     }
 }
 

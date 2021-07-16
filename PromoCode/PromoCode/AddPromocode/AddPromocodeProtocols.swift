@@ -17,9 +17,10 @@ protocol AddPromocodeViewOutput: AnyObject {
 }
 
 protocol AddPromocodeViewInput: AnyObject {
+    func dismissView()
     
 }
 
 protocol AddPromocodeModelInput: AnyObject {
-    func addPromocode(promocode: PromoCode, sphere: Spheres)
+    func addPromocode(promocode: PromoCode, sphere: Spheres, completion: @escaping (Result<PromoCode, СustomError>) -> Void)
 }

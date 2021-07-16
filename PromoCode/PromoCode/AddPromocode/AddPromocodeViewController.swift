@@ -173,5 +173,7 @@ class AddPromocodeViewController: UIViewController {
 // MARK: - Extensions
 
 extension AddPromocodeViewController: AddPromocodeViewInput {
-    
+    func dismissView() {
+        dismiss(animated: true, completion: nil)
+    }
 }
