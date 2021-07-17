@@ -49,6 +49,7 @@ protocol MainViewOutput: AnyObject {
     
     func addPromocodeButtonDidTapped()
     
+    func searchForQuery(_ query: String)
 }
 
 protocol MainInteractorInput: AnyObject {
@@ -60,11 +61,13 @@ protocol MainInteractorInput: AnyObject {
     func getIndex(for promocode: PromoCode) -> Int?
     func addToFavorites(promocode: PromoCode)
     func deleteFromFavorites(promocode: PromoCode)
+    func search(query: String, sphere: Spheres)
+    func removeData()
 }
 
 protocol MainInteractorOutput: AnyObject {
     func promocodesDidLoad()
-    func cleanView()
+    func oneMorePromocodeDidLoad(at index: Int)
 }
 
 protocol MainRouterInput: AnyObject {

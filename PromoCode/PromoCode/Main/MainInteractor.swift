@@ -25,8 +25,6 @@ final class MainInteractor {
 extension MainInteractor: MainInteractorInput {
     
     func getAllPromocodes() {
-        data.removeAll()
-        output?.cleanView()
         for sphere in Spheres.allCases {
             networkManager.getPromocodes(for: sphere) { [weak self] (res) in
                 guard let self = self else { return }
@@ -44,8 +42,6 @@ extension MainInteractor: MainInteractorInput {
     }
     
     func getPromocodes(for sphere: Spheres) {
-        data.removeAll()
-        output?.cleanView()
         networkManager.getPromocodes(for: sphere) { [weak self] (res) in
             guard let self = self else { return }
             switch res {
@@ -93,4 +89,37 @@ extension MainInteractor: MainInteractorInput {
         return 0
     }
     
+    func search(query: String, sphere: Spheres) {
+        if sphere == .all {
+            for i in 1..<Spheres.allCases.count {
+                networkManager.searchPromocodes(query: query, sphere: Spheres.allCases[i]) { [weak self] res in
+                    switch res {
+                    case.success(let promocode):
+                        self?.data.append(promocode)
+                        if let dataCount = self?.data.count {
+                            self?.output?.oneMorePromocodeDidLoad(at: dataCount - 1)
+                        }
+                    case .failure(let err):
+                        print(err.rawValue)
+                    }
+                }
+            }
+        } else {
+            networkManager.searchPromocodes(query: query, sphere: sphere) { [weak self] res in
+                switch res {
+                case.success(let promocode):
+                    self?.data.append(promocode)
+                    if let dataCount = self?.data.count {
+                        self?.output?.oneMorePromocodeDidLoad(at: dataCount - 1)
+                    }
+                case .failure(let err):
+                    print(err.rawValue)
+                }
+            }
+        }
+    }
+    
+    func removeData() {
+        data.removeAll()
+    }
 }

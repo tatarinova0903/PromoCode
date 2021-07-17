@@ -51,7 +51,14 @@ extension FavoritesPresenter: FavoritesViewOutput {
     func delete(promocode: FavPromoCode) {
         interactor.delete(promocode: promocode)
     }
+    
+    func searchForQuery(_ query: String) {
+        interactor.search(query: query)
+    }
 }
 
 extension FavoritesPresenter: FavoritesInteractorOutput {
+    func reloadView() {
+        view?.reloadData()
+    }
 }

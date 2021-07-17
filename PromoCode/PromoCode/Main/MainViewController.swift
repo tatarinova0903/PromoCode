@@ -36,6 +36,7 @@ final class MainViewController: UIViewController {
     
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.barTintColor = .darkGray
         searchBar.placeholder = "What are you looking for?"
         return searchBar
     }()
@@ -80,14 +81,15 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         output.viewDidLoad()
-        configureNavigationBar()
         view.backgroundColor = .darkGray
         [searchBar, promocodeCollectionView, spheresCollectionView, activityIndicator, blurBackgroundView, promocodeView].forEach{ view.addSubview($0) }
-        configureCollectionView()
         promocodeView.delegate = self
         searchBar.delegate = self
-        searchBar.barTintColor = .darkGray
+        
+        configureNavigationBar()
+        configureCollectionView()
     }
     
     override func viewWillLayoutSubviews() {
@@ -290,7 +292,7 @@ extension MainViewController: UICollectionViewDelegate {
 extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        guard let _ = searchBar.text else { return }
-        // TODO: сам поиск
+        guard let searchQuery = searchBar.text else { return }
+        output.searchForQuery(searchQuery)
     }
 }

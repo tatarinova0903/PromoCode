@@ -23,7 +23,8 @@ final class FavoritesInteractor {
 extension FavoritesInteractor: FavoritesInteractorInput {
     
     func getNumberOfRowsInSection(_ section: Int) -> Int {
-        coreDataManager.getNumberOfRowsInSection(section)
+        data.count
+//        coreDataManager.getNumberOfRowsInSection(section)
     }
     
     func getNumberOfSections() -> Int {
@@ -40,5 +41,10 @@ extension FavoritesInteractor: FavoritesInteractorInput {
     
     func delete(promocode: FavPromoCode) {
         coreDataManager.delete(promocode: promocode)
+    }
+    
+    func search(query: String) {
+        data = coreDataManager.search(query: query)
+        output?.reloadView()
     }
 }

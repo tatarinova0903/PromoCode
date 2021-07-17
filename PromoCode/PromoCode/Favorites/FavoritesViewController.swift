@@ -21,6 +21,13 @@ final class FavoritesViewController: UIViewController {
         return collectionView
     }()
     
+    private let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.barTintColor = .darkGray
+        searchBar.placeholder = "Что Вы ищете?"
+        return searchBar
+    }()
+    
     private struct LayersConstants {
         static let screenWidth = UIScreen.main.bounds.width
         static let textFieldInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
@@ -32,7 +39,6 @@ final class FavoritesViewController: UIViewController {
 
     init(output: FavoritesViewOutput) {
         self.output = output
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -45,22 +51,31 @@ final class FavoritesViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         title = "Избранное"
         view.backgroundColor = .darkGray
         output.viewDidLoad()
-        view.addSubview(promocodeCollectionView)
-        configureTableView()
+        [searchBar, promocodeCollectionView].forEach({ view.addSubview($0) })
+        configureCollectionView()
+        searchBar.delegate = self
 	}
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        searchBar.pin
+            .top(view.safeAreaInsets.top + 5)
+            .horizontally(LayersConstants.horisontalPadding)
+            .height(40)
         promocodeCollectionView.pin
-            .all(LayersConstants.horisontalPadding)
+            .below(of: searchBar)
+            .marginTop(5)
+            .horizontally(LayersConstants.horisontalPadding)
+            .bottom(to: view.edge.bottom)
     }
     
     // MARK: - Configures
 
-    private func configureTableView() {
+    private func configureCollectionView() {
         promocodeCollectionView.register(FavPromocodeCollectionViewCell.self, forCellWithReuseIdentifier: FavPromocodeCollectionViewCell.description().description)
         promocodeCollectionView.delegate = self
         promocodeCollectionView.dataSource = self
@@ -146,6 +161,14 @@ extension FavoritesViewController: NSFetchedResultsControllerDelegate {
      
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         promocodeCollectionView.reloadData()
+    }
+}
+
+extension FavoritesViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        guard let searchQuery = searchBar.text else { return }
+        output.searchForQuery(searchQuery)
     }
 }
 

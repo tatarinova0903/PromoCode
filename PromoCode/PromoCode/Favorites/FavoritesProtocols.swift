@@ -28,6 +28,8 @@ protocol FavoritesViewOutput: class {
     func getPromoCode(forIndexPath indexPath: IndexPath) -> FavPromoCode
     
     func delete(promocode: FavPromoCode)
+    
+    func searchForQuery(_ query: String)
 }
 
 protocol FavoritesInteractorInput: class {
@@ -36,9 +38,11 @@ protocol FavoritesInteractorInput: class {
     func getNumberOfSections() -> Int
     func getPromoCode(forIndexPath indexPath: IndexPath) -> FavPromoCode
     func delete(promocode: FavPromoCode)
+    func search(query: String)
 }
 
 protocol FavoritesInteractorOutput: class {
+    func reloadView()
 }
 
 protocol FavoritesRouterInput: class {

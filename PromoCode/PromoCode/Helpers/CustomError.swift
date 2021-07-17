@@ -11,4 +11,5 @@ enum СustomError: String, Error {
     case error = "Ошика ☹️"
     case unexpected = "Неизвестная ошибка 🤔"
     case failedToAddPromocode = "Эта почта уже занята или некорректна 🤷‍♀️"
+    case failedFindingPromocodes = "Не удалось найти промокоды 🤷‍♀️"
 }

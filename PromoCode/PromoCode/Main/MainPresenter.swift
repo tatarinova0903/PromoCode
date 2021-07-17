@@ -41,6 +41,11 @@ final class MainPresenter {
     func getIndex(for sphere: Spheres) -> Int? {
         Spheres.allCases.firstIndex(of: sphere)
     }
+    
+    func cleanView() {
+        interactor.removeData()
+        view?.reloadData()
+    }
 }
 
 // MARK: - Extensions
@@ -65,6 +70,7 @@ extension MainPresenter: MainViewOutput {
         }
         set {
             guard let oldIndex = getIndex(for: sphere), let newIndex = getIndex(for: newValue) else { return }
+            cleanView()
             getPromocodes(for: newValue)
             view?.changeSphereCollectionCell(atOldIndex: oldIndex, atNewIndex: newIndex)
             sphere = newValue
@@ -119,6 +125,12 @@ extension MainPresenter: MainViewOutput {
     func addPromocodeButtonDidTapped() {
         router.showAddPromocodeController(moduleOutput: self)
     }
+    
+    func searchForQuery(_ query: String) {
+        cleanView()
+        view?.startActivityIndicator()
+        interactor.search(query: query, sphere: sphere)
+    }
 }
 
 extension MainPresenter: MainInteractorOutput {
@@ -127,7 +139,8 @@ extension MainPresenter: MainInteractorOutput {
         view?.reloadData()
     }
     
-    func cleanView() {
-        view?.reloadData()
+    func oneMorePromocodeDidLoad(at index: Int) {
+        view?.reloadData(at: index)
+        view?.stopActivityIndicator()
     }
 }

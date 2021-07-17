@@ -87,7 +87,7 @@ class AddPromocodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dismissKeyboard()
+        hideKeyboardWhenTappedAround()
         view.backgroundColor = .darkGray
         
         view.addSubview(whiteCard)

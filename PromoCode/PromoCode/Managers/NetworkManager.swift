@@ -11,6 +11,7 @@ import FirebaseFirestore
 protocol NetworkManagerDescription {
     func getPromocodes(for sphere: Spheres, completion: @escaping (Result<[PromoCode], СustomError>) -> Void)
     func addPromocode(promocode: PromoCode, sphere: Spheres, completion: @escaping (Result<PromoCode, СustomError>) -> Void)
+    func searchPromocodes(query: String, sphere: Spheres, completion: @escaping (Result<PromoCode, СustomError>) -> Void)
 }
 
 
@@ -49,7 +50,7 @@ final class NetworkManager: NetworkManagerDescription {
         }
     }
     
-    //MARK: - Add
+    // MARK: - Add
     
     func addPromocode(promocode: PromoCode, sphere: Spheres, completion: @escaping (Result<PromoCode, СustomError>) -> Void) {
         let ref = database.collection(sphere.rawValue).document()
@@ -65,6 +66,24 @@ final class NetworkManager: NetworkManagerDescription {
             } else {
                 completion(.success(promocode))
             }
+        }
+    }
+    
+    // MARK: - Search
+    
+    func searchPromocodes(query: String, sphere: Spheres, completion: @escaping (Result<PromoCode, СustomError>) -> Void) {
+        let ref = database.collection(sphere.rawValue)
+        ref.whereField(PromoCodeKey.service.rawValue, isEqualTo: query).getDocuments() { [weak self] (querySnapshot, err) in
+            guard let _ = err else {
+                for document in querySnapshot!.documents {
+                    if var promocode = PromocodesConverter.promocode(from: document.data()) {
+                        promocode.isInFavorites = (self?.coreDataManager.isInCoreDataBase(promocode: promocode)) ?? false
+                        completion(.success(promocode))
+                    }
+                }
+                return
+            }
+            completion(.failure(.failedFindingPromocodes))
         }
     }
 }

@@ -16,7 +16,8 @@ protocol CoreDataManagerDescription {
     func delete(promocode: FavPromoCode)
     func isInCoreDataBase(promocode: PromoCode) -> Bool
     func getNumberOfRowsInSection(_ section: Int) -> Int
-    func getNumberOfSections() -> Int 
+    func getNumberOfSections() -> Int
+    func search(query: String) -> [FavPromoCode]
 }
 
 final class CoreDataManager: CoreDataManagerDescription {
@@ -48,7 +49,6 @@ final class CoreDataManager: CoreDataManagerDescription {
             print("Fetch failed")
             return []
         }
-        
     }
     
     func getNumberOfRowsInSection(_ section: Int) -> Int {
@@ -125,5 +125,22 @@ final class CoreDataManager: CoreDataManagerDescription {
         }
         return promocodes.count == 0 ? false : true
     }
-
+    
+    // MARK: - Search
+    
+    func search(query: String) -> [FavPromoCode] {
+        let request: NSFetchRequest<FavPromoCode> = FavPromoCode.fetchRequest()
+        let predicate = NSPredicate(format: "\(PromoCodeKey.service.rawValue) contains[c] %@", query)
+        request.predicate = predicate
+        do {
+            let fetchResult = try context?.fetch(request)
+            guard let promocodes = fetchResult else {
+                return []
+            }
+            return promocodes
+        } catch {
+            print("Fetch failed")
+            return []
+        }
+    }
 }
