@@ -17,26 +17,33 @@ final class FavoritesInteractor {
     private var data = [FavPromoCode]()
         
     private let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    
+    private var isSearchingForQuery = false
 
 }
 
 extension FavoritesInteractor: FavoritesInteractorInput {
     
     func getNumberOfRowsInSection(_ section: Int) -> Int {
-        data.count
-//        coreDataManager.getNumberOfRowsInSection(section)
+        if isSearchingForQuery {
+            return data.count
+        }
+        return coreDataManager.getNumberOfRowsInSection(section)
     }
     
     func getNumberOfSections() -> Int {
         coreDataManager.getNumberOfSections()
     }
     
-    func getAllPromocodes(delegate: FavoritesViewInput?) {
-        data = coreDataManager.getPromoCodes(delegate: delegate)
+    func setupFetchedResultsController(delegate: FavoritesViewInput?) {
+        coreDataManager.setupFetchedResultsController(delegate: delegate)
     }
     
     func getPromoCode(forIndexPath indexPath: IndexPath) -> FavPromoCode {
-        coreDataManager.getPromocode(byIndexPath: indexPath)
+        if isSearchingForQuery {
+            return data[indexPath.row]
+        }
+        return coreDataManager.getPromocode(byIndexPath: indexPath)
     }
     
     func delete(promocode: FavPromoCode) {
@@ -44,7 +51,13 @@ extension FavoritesInteractor: FavoritesInteractorInput {
     }
     
     func search(query: String) {
+        isSearchingForQuery = true
         data = coreDataManager.search(query: query)
+        output?.reloadView()
+    }
+    
+    func didEndSearching() {
+        isSearchingForQuery = false
         output?.reloadView()
     }
 }

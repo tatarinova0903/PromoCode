@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 protocol CoreDataManagerDescription {
-    func getPromoCodes(delegate: FavoritesViewInput?) -> [FavPromoCode]
+    func setupFetchedResultsController(delegate: FavoritesViewInput?)
     func getPromocode(byIndexPath indexPath: IndexPath) -> FavPromoCode
     func addPromoCode(promocode: PromoCode)
     func delete(promocode: PromoCode)
@@ -31,23 +31,21 @@ final class CoreDataManager: CoreDataManagerDescription {
     
     // MARK: - Get
     
-    func getPromoCodes(delegate: FavoritesViewInput?) -> [FavPromoCode] {
+    func setupFetchedResultsController(delegate: FavoritesViewInput?) {
         if fetchedResultsController == nil {
             let request: NSFetchRequest<FavPromoCode> = FavPromoCode.fetchRequest()
             let sort = NSSortDescriptor(key: "date", ascending: false)
             request.sortDescriptors = [sort]
 //            request.fetchBatchSize = 20
-            guard let context = context else { return [] }
+            guard let context = context else { return }
             fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
             fetchedResultsController?.delegate = delegate
         }
         
         do {
             try fetchedResultsController?.performFetch()
-            return fetchedResultsController?.fetchedObjects ?? []
         } catch {
             print("Fetch failed")
-            return []
         }
     }
     
@@ -62,7 +60,7 @@ final class CoreDataManager: CoreDataManagerDescription {
     
     func getPromocode(byId id: String) -> FavPromoCode? {
         let request: NSFetchRequest<FavPromoCode> = FavPromoCode.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", argumentArray: [id])
+        request.predicate = NSPredicate(format: "id == %@", id)
         let promocodes = try? context?.fetch(request)
         return promocodes?.first
     }

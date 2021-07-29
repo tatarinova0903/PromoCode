@@ -170,5 +170,11 @@ extension FavoritesViewController: UISearchBarDelegate {
         guard let searchQuery = searchBar.text else { return }
         output.searchForQuery(searchQuery)
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            output.didEndSearching()
+        }
+    }
 }
 

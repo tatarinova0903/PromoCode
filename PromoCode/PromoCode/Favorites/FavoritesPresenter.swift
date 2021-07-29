@@ -37,7 +37,7 @@ extension FavoritesPresenter: FavoritesViewOutput {
     }
     
     func viewDidLoad() {
-        interactor.getAllPromocodes(delegate: view)
+        interactor.setupFetchedResultsController(delegate: view)
     }
     
     func getPromoCode(forIndexPath indexPath: IndexPath) -> FavPromoCode {
@@ -54,6 +54,10 @@ extension FavoritesPresenter: FavoritesViewOutput {
     
     func searchForQuery(_ query: String) {
         interactor.search(query: query)
+    }
+    
+    func didEndSearching() {
+        interactor.didEndSearching()
     }
 }
 

@@ -30,15 +30,17 @@ protocol FavoritesViewOutput: class {
     func delete(promocode: FavPromoCode)
     
     func searchForQuery(_ query: String)
+    func didEndSearching()
 }
 
 protocol FavoritesInteractorInput: class {
-    func getAllPromocodes(delegate: FavoritesViewInput?)
+    func setupFetchedResultsController(delegate: FavoritesViewInput?)
     func getNumberOfRowsInSection(_ section: Int) -> Int
     func getNumberOfSections() -> Int
     func getPromoCode(forIndexPath indexPath: IndexPath) -> FavPromoCode
     func delete(promocode: FavPromoCode)
     func search(query: String)
+    func didEndSearching()
 }
 
 protocol FavoritesInteractorOutput: class {
