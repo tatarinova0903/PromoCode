@@ -37,7 +37,7 @@ final class MainViewController: UIViewController {
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.barTintColor = .darkGray
-        searchBar.placeholder = "What are you looking for?"
+        searchBar.placeholder = "Что Вы ищете?"
         return searchBar
     }()
         
@@ -294,5 +294,11 @@ extension MainViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         guard let searchQuery = searchBar.text else { return }
         output.searchForQuery(searchQuery)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            output.didEndSearching()
+        }
     }
 }

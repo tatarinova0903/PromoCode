@@ -131,6 +131,10 @@ extension MainPresenter: MainViewOutput {
         view?.startActivityIndicator()
         interactor.search(query: query, sphere: sphere)
     }
+    
+    func didEndSearching() {
+        getPromocodes(for: sphere)
+    }
 }
 
 extension MainPresenter: MainInteractorOutput {
@@ -141,6 +145,10 @@ extension MainPresenter: MainInteractorOutput {
     
     func oneMorePromocodeDidLoad(at index: Int) {
         view?.reloadData(at: index)
+        view?.stopActivityIndicator()
+    }
+    
+    func didEndloading() {
         view?.stopActivityIndicator()
     }
 }

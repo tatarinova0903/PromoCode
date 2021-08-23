@@ -63,9 +63,9 @@ final class FavoritesViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         searchBar.pin
-            .top(view.safeAreaInsets.top + 5)
+            .top(view.safeAreaInsets.top + 10)
             .horizontally(LayersConstants.horisontalPadding)
-            .height(40)
+            .height(round(UIScreen.main.bounds.height / 15))
         promocodeCollectionView.pin
             .below(of: searchBar)
             .marginTop(5)

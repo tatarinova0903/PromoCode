@@ -50,6 +50,7 @@ protocol MainViewOutput: AnyObject {
     func addPromocodeButtonDidTapped()
     
     func searchForQuery(_ query: String)
+    func didEndSearching()
 }
 
 protocol MainInteractorInput: AnyObject {
@@ -68,6 +69,7 @@ protocol MainInteractorInput: AnyObject {
 protocol MainInteractorOutput: AnyObject {
     func promocodesDidLoad()
     func oneMorePromocodeDidLoad(at index: Int)
+    func didEndloading()
 }
 
 protocol MainRouterInput: AnyObject {

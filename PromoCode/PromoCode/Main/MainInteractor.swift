@@ -100,6 +100,7 @@ extension MainInteractor: MainInteractorInput {
                             self?.output?.oneMorePromocodeDidLoad(at: dataCount - 1)
                         }
                     case .failure(let err):
+                        self?.output?.didEndloading()
                         print(err.rawValue)
                     }
                 }
@@ -113,6 +114,7 @@ extension MainInteractor: MainInteractorInput {
                         self?.output?.oneMorePromocodeDidLoad(at: dataCount - 1)
                     }
                 case .failure(let err):
+                    self?.output?.didEndloading()
                     print(err.rawValue)
                 }
             }

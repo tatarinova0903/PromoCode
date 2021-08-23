@@ -74,16 +74,25 @@ final class NetworkManager: NetworkManagerDescription {
     func searchPromocodes(query: String, sphere: Spheres, completion: @escaping (Result<PromoCode, СustomError>) -> Void) {
         let ref = database.collection(sphere.rawValue)
         ref.whereField(PromoCodeKey.service.rawValue, isEqualTo: query).getDocuments() { [weak self] (querySnapshot, err) in
-            guard let _ = err else {
-                for document in querySnapshot!.documents {
-                    if var promocode = PromocodesConverter.promocode(from: document.data()) {
-                        promocode.isInFavorites = (self?.coreDataManager.isInCoreDataBase(promocode: promocode)) ?? false
-                        completion(.success(promocode))
-                    }
-                }
+            if let _ = err {
+                completion(.failure(.failedFindingPromocodes))
                 return
             }
-            completion(.failure(.failedFindingPromocodes))
+            guard let querySnapshot = querySnapshot else {
+                completion(.failure(.failedFindingPromocodes))
+                return
+            }
+            if querySnapshot.documents.isEmpty {
+                completion(.failure(.failedFindingPromocodes))
+                return
+            }
+            for document in querySnapshot.documents {
+                if var promocode = PromocodesConverter.promocode(from: document.data()) {
+                    promocode.isInFavorites = (self?.coreDataManager.isInCoreDataBase(promocode: promocode)) ?? false
+                    completion(.success(promocode))
+                }
+            }
+            return
         }
     }
 }
