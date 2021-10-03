@@ -32,6 +32,7 @@
 		432D91262685E0120079279E /* PromocodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432D91252685E0120079279E /* PromocodeCollectionViewCell.swift */; };
 		433110F2269041C4008DC02B /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433110F1269041C4008DC02B /* UIViewController + Extension.swift */; };
 		433110F526904217008DC02B /* PromocodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433110F426904217008DC02B /* PromocodeView.swift */; };
+		4371785126E4BECB0020EBFB /* PromoCodeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371785026E4BECB0020EBFB /* PromoCodeUITests.swift */; };
 		4396A1822684AEBB005623CF /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A17C2684AEBB005623CF /* FavoritesPresenter.swift */; };
 		4396A1832684AEBB005623CF /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A17D2684AEBB005623CF /* FavoritesRouter.swift */; };
 		4396A1842684AEBB005623CF /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4396A17E2684AEBB005623CF /* FavoritesViewController.swift */; };
@@ -60,6 +61,16 @@
 		43F6379A2684C239008D8363 /* CustomTabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F637942684C239008D8363 /* CustomTabBarContainer.swift */; };
 		FA9E9BEF3732856EB11CEF30 /* Pods_PromoCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C6FFA61D33A3170594815D9 /* Pods_PromoCode.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4371785326E4BECB0020EBFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 432CEF052684A39600402C32 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 432CEF0C2684A39600402C32;
+			remoteInfo = PromoCode;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		18232A60848D03BE2DE5963D /* Pods-PromoCode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PromoCode.debug.xcconfig"; path = "Target Support Files/Pods-PromoCode/Pods-PromoCode.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +102,9 @@
 		432D91252685E0120079279E /* PromocodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeCollectionViewCell.swift; sourceTree = "<group>"; };
 		433110F1269041C4008DC02B /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		433110F426904217008DC02B /* PromocodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeView.swift; sourceTree = "<group>"; };
+		4371784E26E4BECA0020EBFB /* PromoCodeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PromoCodeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4371785026E4BECB0020EBFB /* PromoCodeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoCodeUITests.swift; sourceTree = "<group>"; };
+		4371785226E4BECB0020EBFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4396A17C2684AEBB005623CF /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
 		4396A17D2684AEBB005623CF /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		4396A17E2684AEBB005623CF /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +143,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4371784B26E4BECA0020EBFB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -148,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				432CEF0F2684A39600402C32 /* PromoCode */,
+				4371784F26E4BECB0020EBFB /* PromoCodeUITests */,
 				432CEF0E2684A39600402C32 /* Products */,
 				9057AA4BD1BA9BB629977351 /* Pods */,
 				E0EA4297B9E9CB8BBEBCD0AD /* Frameworks */,
@@ -158,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				432CEF0D2684A39600402C32 /* PromoCode.app */,
+				4371784E26E4BECA0020EBFB /* PromoCodeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -226,6 +249,15 @@
 				43AA4BDD26A04863000FD36A /* SpheresContainer.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		4371784F26E4BECB0020EBFB /* PromoCodeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4371785026E4BECB0020EBFB /* PromoCodeUITests.swift */,
+				4371785226E4BECB0020EBFB /* Info.plist */,
+			);
+			path = PromoCodeUITests;
 			sourceTree = "<group>";
 		};
 		4396A17A2684AE59005623CF /* Main */ = {
@@ -328,6 +360,24 @@
 			productReference = 432CEF0D2684A39600402C32 /* PromoCode.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4371784D26E4BECA0020EBFB /* PromoCodeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4371785726E4BECB0020EBFB /* Build configuration list for PBXNativeTarget "PromoCodeUITests" */;
+			buildPhases = (
+				4371784A26E4BECA0020EBFB /* Sources */,
+				4371784B26E4BECA0020EBFB /* Frameworks */,
+				4371784C26E4BECA0020EBFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4371785426E4BECB0020EBFB /* PBXTargetDependency */,
+			);
+			name = PromoCodeUITests;
+			productName = PromoCodeUITests;
+			productReference = 4371784E26E4BECA0020EBFB /* PromoCodeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -339,6 +389,10 @@
 				TargetAttributes = {
 					432CEF0C2684A39600402C32 = {
 						CreatedOnToolsVersion = 12.0.1;
+					};
+					4371784D26E4BECA0020EBFB = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = 432CEF0C2684A39600402C32;
 					};
 				};
 			};
@@ -356,6 +410,7 @@
 			projectRoot = "";
 			targets = (
 				432CEF0C2684A39600402C32 /* PromoCode */,
+				4371784D26E4BECA0020EBFB /* PromoCodeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -368,6 +423,13 @@
 				43079E342685B2CD00866193 /* GoogleService-Info.plist in Resources */,
 				432CEF202684A39800402C32 /* LaunchScreen.storyboard in Resources */,
 				432CEF1D2684A39800402C32 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4371784C26E4BECA0020EBFB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,7 +533,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4371784A26E4BECA0020EBFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4371785126E4BECB0020EBFB /* PromoCodeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4371785426E4BECB0020EBFB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 432CEF0C2684A39600402C32 /* PromoCode */;
+			targetProxy = 4371785326E4BECB0020EBFB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		432CEF1E2684A39800402C32 /* LaunchScreen.storyboard */ = {
@@ -536,7 +614,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -591,7 +669,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -643,6 +721,44 @@
 			};
 			name = Release;
 		};
+		4371785526E4BECB0020EBFB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2VCQ3FF898;
+				INFOPLIST_FILE = PromoCodeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.DaryaTatarinova.PromoCodeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PromoCode;
+			};
+			name = Debug;
+		};
+		4371785626E4BECB0020EBFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2VCQ3FF898;
+				INFOPLIST_FILE = PromoCodeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.DaryaTatarinova.PromoCodeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PromoCode;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -660,6 +776,15 @@
 			buildConfigurations = (
 				432CEF252684A39800402C32 /* Debug */,
 				432CEF262684A39800402C32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4371785726E4BECB0020EBFB /* Build configuration list for PBXNativeTarget "PromoCodeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4371785526E4BECB0020EBFB /* Debug */,
+				4371785626E4BECB0020EBFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
